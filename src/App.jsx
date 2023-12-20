@@ -1,14 +1,13 @@
-import { useState } from 'react'
-import { Button } from "@material-tailwind/react"
+import { Home } from "./pages/Home"
+import { Routes, Route } from "react-router-dom"
 
 function App() {
 
   return (
     <>
-      <h1 className="text-3xl font-bold underline">
-        Hello world!
-      </h1>
-      <Button color='blue' >Hello</Button>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
     </>
   )
 }
