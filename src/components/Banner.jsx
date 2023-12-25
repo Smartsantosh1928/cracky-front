@@ -4,7 +4,7 @@ import { images } from '../data/bannerdata';
 
 
 export function Banner() {
-    return <section className='lg:min-h-[87vh] lg:px-8'>
+    return <section className='lg:min-h-[87vh] '>
            <Carousel
                showArrows={true}
                autoPlay={true}
@@ -20,7 +20,7 @@ export function Banner() {
                 images?.map(({id,src})=>{
                     return <div key={id}>
                             <img src={src} alt="Images" />
-                            <div className="absolute bottom-0 right-0 left-0 w-full h-1/3 bg-gradient-to-t from-white to-transparent"></div>
+                            <div className="absolute bottom-0 right-0 left-0 w-full h-1/3 bg-gradient-to-t from-[#e3e6e6] to-transparent"></div>
                         </div>
                  })
             }

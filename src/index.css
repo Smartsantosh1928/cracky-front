@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+     @apply bg-[#e3e6e6]; /* Adjust the shade of gray as needed */
+     @apply font-secondary font-bold
+}
+   

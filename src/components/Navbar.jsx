@@ -29,22 +29,22 @@ export function Navbar() {
 
   return (
     <>
-      <nav className="w-full h-[70px] flex justify-start items-center p-6 mt-7">
+      <nav className="w-full h-[70px] flex justify-start items-center lg:p-8 lg:py-11 ">
         <div className='text-3xl font-bold bg-red-500 text-orange-200 p-3 rounded-2xl cursor-pointer'>
           Cracky
         </div>
         <div className='ml-5 w-[60rem]'>
-          <Input label={"Search "+placeholders[currentPlaceholderIndex]+"..."} className='bg-[#fcf5f5]' color='blue' size='lg' icon={<FcSearch className='w-6 h-6' />} />
+          <Input label={"Search "+placeholders[currentPlaceholderIndex]+"..."} className='bg-white' color='blue-gray' size='lg' icon={<FcSearch className='w-6 h-6' />} />
         </div>
           <div className='w-full flex justify-end items-center'>
             <div className='w-[65%] flex justify-evenly items-center'>
-              <Button variant="gradient" color='blue' className='rounded-full flex items-center gap-3 py-2'>Login
+              <Button variant="gradient" color='blue-gray' className='rounded-full flex  items-center gap-3 py-2 font-secondary font-bold '>Login
                 <CgProfile className='w-6 h-6' />
               </Button>
-              <Button variant="outlined" color='blue' className='rounded-full flex items-center gap-3 py-2'>cart
+              <Button variant="outlined" color='blue' className='rounded-full flex justify-center items-center gap-3 py-2 font-secondary font-bold '>cart
                 <BsCartCheck className='w-6 h-6' />
               </Button>
-              <Button variant="text" color='blue' className='rounded-full flex items-center gap-3'>Become a Seller
+              <Button variant="text" color='blue' className='rounded-full justify-center flex items-center gap-3 font-secondary font-bold '>Become Seller
                 <FcShop className='w-6 h-6' />
               </Button>
               <IconButton variant="text">
