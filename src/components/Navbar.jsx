@@ -41,14 +41,14 @@ export function Navbar() {
               <Button variant="gradient" color='blue-gray' className='rounded-full flex  items-center gap-3 py-2 font-secondary font-bold '>Login
                 <CgProfile className='w-6 h-6' />
               </Button>
-              <Button variant="outlined" color='blue' className='rounded-full flex justify-center items-center gap-3 py-2 font-secondary font-bold '>cart
+              <Button variant="outlined" color='blue-gray' className='rounded-full flex justify-center items-center gap-3 py-2 font-secondary font-bold '>cart
                 <BsCartCheck className='w-6 h-6' />
               </Button>
-              <Button variant="text" color='blue' className='rounded-full justify-center flex items-center gap-3 font-secondary font-bold '>Become Seller
+              <Button variant="text" color='blue-gray' className='rounded-full justify-center flex items-center gap-3 font-secondary font-bold '>Become Seller
                 <FcShop className='w-6 h-6' />
               </Button>
               <IconButton variant="text">
-                <TfiMenuAlt className='w-6 h-6 text-blue-500 cursor-pointer' />
+                <TfiMenuAlt className='w-6 h-6 text-blue-gray-900  cursor-pointer' />
               </IconButton>
               <Menu>
                 <MenuHandler>

@@ -4,7 +4,7 @@ import { images } from '../data/bannerdata';
 
 
 export function Banner() {
-    return <section className='lg:min-h-[87vh] '>
+    return <section className='lg:min-h-[87vh] w-full'>
            <Carousel
                showArrows={true}
                autoPlay={true}
