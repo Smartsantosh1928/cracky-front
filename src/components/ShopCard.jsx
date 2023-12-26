@@ -8,7 +8,7 @@ import {
     CardFooter,
     Typography,
     Tooltip,
-  } from "@material-tailwind/react";
+} from "@material-tailwind/react";
    
 export function ShopCard() {
     return (
