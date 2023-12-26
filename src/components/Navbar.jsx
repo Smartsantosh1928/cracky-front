@@ -16,6 +16,8 @@ import "../styles/Navbar.css"
 import { MdFavoriteBorder } from "react-icons/md";
 import { PiPackageBold } from "react-icons/pi";
 import { useDispatch, useSelector } from 'react-redux';
+import { LoginAuth, RegisterAuth } from '../store/AuthSlice';
+import Authenticator from './Authenticator';
  
 export function Navbar() {
 
@@ -23,6 +25,7 @@ export function Navbar() {
   const [currentPlaceholderIndex, setCurrentPlaceholderIndex] = useState(0);
   const [ isMobile, setIsMobile ] = useState(false);
   const [ user, setUser ] = useState(null);
+
   const dispatch = useDispatch();
   const auth = useSelector(state => state.auth.auth);
 
@@ -32,6 +35,10 @@ export function Navbar() {
     } else {
       setIsMobile(false);
     }
+  }
+
+  const handleLogin = () => {
+    dispatch(LoginAuth());
   }
 
   useEffect(() => {
@@ -53,16 +60,19 @@ export function Navbar() {
 
   return (
     <>
-      <nav className="w-full h-full md:h-[70px] flex justify-start items-center p-2 lg:p-8 lg:py-11">
-        <div className='text-lg  md:text-3xl font-bold bg-red-500 text-orange-200 p-3 rounded-2xl cursor-pointer'>
-          Cracky
-        </div>
+      <nav className="w-full h-full md:h-[70px] flex justify-start items-center lg:p-8 lg:py-11">
+        <Avatar
+          variant="circular"
+          alt="Cracky"
+          className="cursor-pointer md:w-44 md:h-44 w-28 h-20 ml-3"
+          src="/img/logo.png"
+        />
         {!isMobile && <div className='ml-5 w-[60rem]'>
           <Input label={"Search "+placeholders[currentPlaceholderIndex]+"..."} className='bg-white' color='blue-gray' size='lg' icon={<FcSearch className='w-6 h-6' />} />
         </div>}
           <div className='w-full flex justify-end items-center'>
-            <div className='md:w-[65%] flex justify-center gap-4 md:gap-0 md:justify-evenly items-center'>
-              {user==null && <Button variant="gradient" color='blue-gray' className='rounded-full flex  items-center gap-3 py-2 font-secondary font-bold '>Login
+            <div className='w-full md:w-[90%] flex justify-center -mr-6 gap-4 md:gap-0 md:justify-evenly items-center'>
+              {user==null && <Button variant="gradient" color='blue-gray' className='rounded-full flex  items-center gap-3 py-2 font-secondary font-bold' onClick={handleLogin} >Login
                 <CgProfile className='w-6 h-6' />
               </Button>}
               {isMobile ? <Tooltip
@@ -94,10 +104,10 @@ export function Navbar() {
               </Button>}
               <Menu>
                 <MenuHandler>
-                  {user==null ? <IconButton variant="outlined" color='blue-gray' className='rounded-full mr-2' ><FcBusinessman className='w-8 h-8 cursor-pointer' /></IconButton> : <Avatar
+                  {user==null ? <IconButton variant="outlined" color='blue-gray' className='rounded-full mr-4 md:mr-0' ><FcBusinessman className='w-8 h-8 cursor-pointer' /></IconButton> : <Avatar
                     variant="circular"
                     alt="User Name"
-                    className="cursor-pointer mr-2"
+                    className="cursor-pointer"
                     src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
                   />}
                 </MenuHandler>
@@ -150,7 +160,10 @@ export function Navbar() {
             </div>
           </div>
       </nav>
-
+      {isMobile && <div className='p-3 -mt-5 w-full'>
+          <Input label={"Search "+placeholders[currentPlaceholderIndex]+"..."} className='bg-white' color='blue-gray' size='lg' icon={<FcSearch className='w-6 h-6' />} />
+      </div>}
+      {auth!=null && <Authenticator />}
     </>
   )
 }

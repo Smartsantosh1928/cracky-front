@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import logo from '../../public/img/arul.png' 
-import img from '../../public/img/crack1.png' 
+import logo from '/img/arul.png' 
+import img from '/img/crack1.png' 
 import {
     Card,
     CardHeader,
