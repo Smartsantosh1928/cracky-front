@@ -1,8 +1,37 @@
+import React, { useEffect } from "react"
 import { Home } from "./pages/Home"
 import { Routes, Route } from "react-router-dom"
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { useDispatch, useSelector } from 'react-redux';
+import { ToggleDevice } from "./store/DeviceSlice";
 
 function App() {
+
+  const dispatch = useDispatch();
+  const isMobile = useSelector(state => state.device.isMobile);
+
+  const handleResize = () => {
+    if (window.innerWidth < 768) {
+      dispatch(ToggleDevice(true));
+    } else {
+      dispatch(ToggleDevice(false));
+    }
+  }
+
+  useEffect(() => {
+    if (window.innerWidth < 768) {
+      console.log("mobile");
+      dispatch(ToggleDevice(true));
+    } else {
+      console.log("laptop");
+      dispatch(ToggleDevice(false));
+    }
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    }; 
+  }, []);
 
   return (
     <>

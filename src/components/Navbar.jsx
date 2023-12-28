@@ -23,50 +23,37 @@ export function Navbar() {
 
   const placeholders = ['Crackers', 'Sparklers', 'Fountains', 'Rockets', 'Fireworks'];
   const [currentPlaceholderIndex, setCurrentPlaceholderIndex] = useState(0);
-  const [ isMobile, setIsMobile ] = useState(false);
   const [ user, setUser ] = useState(null);
   const [isShaking, setShaking] = useState(true);
 
   const dispatch = useDispatch();
   const auth = useSelector(state => state.auth.auth);
-
-  const handleResize = () => {
-    if (window.innerWidth < 768) {
-      setIsMobile(true);
-    } else {
-      setIsMobile(false);
-    }
-  }
+  const isMobile = useSelector(state => state.device.isMobile);
 
   const handleLogin = () => {
     dispatch(LoginAuth());
+  }
+
+  const handleRegister = () => {
+    dispatch(RegisterAuth());
   }
 
   useEffect(() => {
     setTimeout(() => {
       setShaking(false);
     }, 15000)
-    if (window.innerWidth < 768) {
-      setIsMobile(true);
-    } else {
-      setIsMobile(false);
-    }
-    window.addEventListener('resize', handleResize);
+    
     const intervalId = setInterval(() => {
       setCurrentPlaceholderIndex((prevIndex) => (prevIndex + 1) % placeholders.length);
     }, 5000);
 
-    return () => {
-      clearInterval(intervalId);
-      window.removeEventListener('resize', handleResize);
-    }; 
-  }, []);
+    return () => clearInterval(intervalId);
+  }, [isMobile]);
 
   return (
     <>
       <nav className="w-full h-full md:h-[70px] flex justify-start items-center lg:p-8 lg:py-11">
         <Avatar
-          variant="circular"
           alt="Cracky"
           className="cursor-pointer md:w-44 md:h-44 w-28 h-20 ml-3"
           src="/img/logo.png"
@@ -81,7 +68,7 @@ export function Navbar() {
                 <Button variant="gradient" color='blue-gray' className='rounded-full flex  items-center gap-3 py-2 font-secondary font-bold' onClick={handleLogin} >Login
                   <CgProfile className='w-6 h-6' />
                 </Button>
-                {(!isMobile && isShaking) && <button className='w-full h-full absolute mt-14 text-white bg-blue-400 z-50 flex justify-center items-center gap-3 py-2 font-secondary font-bold shake-login' >Sign Up
+                {(!isMobile && isShaking) && <button onClick={handleRegister} className='w-full h-full absolute mt-14 text-white bg-blue-400 z-50 flex justify-center items-center gap-3 py-2 font-secondary font-bold shake-login' >Sign Up
                   <CgProfile className='w-6 h-6' />
                 </button>}
               </div>}
