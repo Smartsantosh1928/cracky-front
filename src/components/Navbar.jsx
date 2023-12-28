@@ -23,40 +23,23 @@ export function Navbar() {
 
   const placeholders = ['Crackers', 'Sparklers', 'Fountains', 'Rockets', 'Fireworks'];
   const [currentPlaceholderIndex, setCurrentPlaceholderIndex] = useState(0);
-  const [ isMobile, setIsMobile ] = useState(false);
   const [ user, setUser ] = useState(null);
 
   const dispatch = useDispatch();
   const auth = useSelector(state => state.auth.auth);
-
-  const handleResize = () => {
-    if (window.innerWidth < 768) {
-      setIsMobile(true);
-    } else {
-      setIsMobile(false);
-    }
-  }
+  const isMobile = useSelector(state => state.device.isMobile);
 
   const handleLogin = () => {
     dispatch(LoginAuth());
   }
 
   useEffect(() => {
-    if (window.innerWidth < 768) {
-      setIsMobile(true);
-    } else {
-      setIsMobile(false);
-    }
-    window.addEventListener('resize', handleResize);
     const intervalId = setInterval(() => {
       setCurrentPlaceholderIndex((prevIndex) => (prevIndex + 1) % placeholders.length);
     }, 5000);
 
-    return () => {
-      clearInterval(intervalId);
-      window.removeEventListener('resize', handleResize);
-    }; 
-  }, []);
+    return () => clearInterval(intervalId);
+  }, [isMobile]);
 
   return (
     <>
