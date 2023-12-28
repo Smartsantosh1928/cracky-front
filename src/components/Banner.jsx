@@ -4,10 +4,30 @@ import { images } from '../data/bannerdata';
 import { PiArrowFatLinesLeft,PiArrowFatLinesRight } from "react-icons/pi";
 
 export function Banner() {
+    const [isMobile,setIsMobile] = useState(false);
+    function handleResize(){
+        if(window.innerWidth<768){
+            setIsMobile(true)
+        }else{
+            setIsMobile(false)
+        }
+    }
+    useEffect(()=>{
+        if(window.innerWidth<768){
+            setIsMobile(true)
+        }else{
+            setIsMobile(false)
+        }
+        window.addEventListener('resize',handleResize);
+        return ()=>{
+            window.removeEventListener('resize',handleResize);
+        }
+    },[])
+    console.log(isMobile);
     return <section className='lg:min-h-[87vh] w-full'>
            <Carousel
                 renderArrowPrev={(onClickHandler, hasPrev, label) =>
-                    hasPrev && (
+                    (!isMobile&&hasPrev) && (
                         <button type="button" className=' lg:p-5 ' onClick={onClickHandler} title={label} style={{ ...{
                             position: 'absolute',
                             zIndex: 2,
@@ -23,7 +43,7 @@ export function Banner() {
                     )
                 }
                 renderArrowNext={(onClickHandler, hasNext, label) =>
-                    hasNext && (
+                    (!isMobile&&hasNext) &&(
                         <button type="button"  className=' lg:p-5 ' onClick={onClickHandler} title={label} style={{ ...{
                             position: 'absolute',
                             zIndex: 2,
@@ -46,14 +66,14 @@ export function Banner() {
                showStatus={false}
                useKeyboardArrows={true}
                swipeable={true}
-               showIndicators={false}
+               showIndicators={isMobile}
                thumbWidth={100}
             >
             {
                 images?.map(({id,src})=>{
                     return <div key={id}>
                             <img src={src} alt="Images" />
-                            <div className="absolute bottom-0 right-0 left-0 w-full h-1/3 bg-gradient-to-t from-[#e3e6e6] to-transparent"></div>
+                            {!isMobile&&<div className="absolute bottom-0 right-0 left-0 w-full h-1/3 bg-gradient-to-t from-[#e3e6e6] to-transparent"></div>}
                         </div>
                  })
             }

@@ -71,7 +71,7 @@ export function Navbar() {
           <Input label={"Search "+placeholders[currentPlaceholderIndex]+"..."} className='bg-white' color='blue-gray' size='lg' icon={<FcSearch className='w-6 h-6' />} />
         </div>}
           <div className='w-full flex justify-end items-center'>
-            <div className='w-full md:w-[90%] flex justify-center -mr-6 gap-4 md:gap-0 md:justify-evenly items-center'>
+            <div className='w-full md:w-[90%] flex justify-center lg:-mr-6 gap-4 md:gap-0 md:justify-evenly items-center'>
               {user==null && <Button variant="gradient" color='blue-gray' className='rounded-full flex  items-center gap-3 py-2 font-secondary font-bold' onClick={handleLogin} >Login
                 <CgProfile className='w-6 h-6' />
               </Button>}
