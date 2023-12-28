@@ -25,6 +25,7 @@ export function Navbar() {
   const [currentPlaceholderIndex, setCurrentPlaceholderIndex] = useState(0);
   const [ isMobile, setIsMobile ] = useState(false);
   const [ user, setUser ] = useState(null);
+  const [isShaking, setShaking] = useState(true);
 
   const dispatch = useDispatch();
   const auth = useSelector(state => state.auth.auth);
@@ -42,6 +43,9 @@ export function Navbar() {
   }
 
   useEffect(() => {
+    setTimeout(() => {
+      setShaking(false);
+    }, 15000)
     if (window.innerWidth < 768) {
       setIsMobile(true);
     } else {
@@ -72,9 +76,15 @@ export function Navbar() {
         </div>}
           <div className='w-full flex justify-end items-center'>
             <div className='w-full md:w-[90%] flex justify-center -mr-6 gap-4 md:gap-0 md:justify-evenly items-center'>
-              {user==null && <Button variant="gradient" color='blue-gray' className='rounded-full flex  items-center gap-3 py-2 font-secondary font-bold' onClick={handleLogin} >Login
-                <CgProfile className='w-6 h-6' />
-              </Button>}
+              {user==null && 
+              <div className='relative flex flex-col'>
+                <Button variant="gradient" color='blue-gray' className='rounded-full flex  items-center gap-3 py-2 font-secondary font-bold' onClick={handleLogin} >Login
+                  <CgProfile className='w-6 h-6' />
+                </Button>
+                {(!isMobile && isShaking) && <button className='w-full h-full absolute mt-14 text-white bg-blue-400 z-50 flex justify-center items-center gap-3 py-2 font-secondary font-bold shake-login' >Sign Up
+                  <CgProfile className='w-6 h-6' />
+                </button>}
+              </div>}
               {isMobile ? <Tooltip
                 content="Cart"
                 animate={{

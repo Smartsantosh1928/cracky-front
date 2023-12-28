@@ -6,4 +6,21 @@ body {
      @apply bg-[#e3e6e6]; /* Adjust the shade of gray as needed */
      @apply font-secondary font-bold
 }
-   
+
+.shake-login{
+     animation-name: shake;
+     animation-duration: 5s;
+     animation-iteration-count: infinite;
+     animation-timing-function: ease-in;
+}
+
+@keyframes shake {
+     0% {transform: translateX(0)}
+     1% {transform: translateX(-3px)}
+     2% {transform: translateX(8px)}
+     3% {transform: translateX(-10px)}
+     4% {transform: translateX(10px)}
+     5% {transform: translateX(-8px)}
+     6% {transform: translateX(3px)}
+     7% {transform: translateX(0)}
+}

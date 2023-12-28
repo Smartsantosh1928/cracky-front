@@ -8,11 +8,16 @@ import {
     CardHeader,
     Typography,
     Button,
-    IconButton
+    IconButton,
+    Input,
+    Checkbox,
+    CardFooter,
 } from "@material-tailwind/react";
 import { LoginAuth, LogoutAuth, RegisterAuth } from '../store/AuthSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { IoIosCloseCircleOutline } from "react-icons/io";
+import { ReactSVG } from 'react-svg';
+import { Link } from "react-router-dom";
 
 export function Authenticator() {
 
@@ -27,15 +32,14 @@ export function Authenticator() {
     <div>
         <Dialog
             open
-            size={"md"}
+            size={"lg"}
             handler={handleOpen}
             animate={{
                 mount: { scale: 1, y: 0 },
                 unmount: { scale: 0.3, y: -100 },
             }}
         >
-            <DialogHeader className="justify-between">
-                {auth=="login" ? "Login" : "Register"}
+            <DialogHeader className="justify-end -mt-2">
                 <IconButton
                     color="blue-gray"
                     size="md"
@@ -45,52 +49,55 @@ export function Authenticator() {
                     <IoIosCloseCircleOutline className="w-7 h-7" />
                 </IconButton>
             </DialogHeader>
-            <DialogBody divider className="grid place-items-center gap-4">
-                <Card className="w-full max-w-[48rem] flex-row">
+            <DialogBody className="grid place-items-center gap-4 -mt-5">
+            <Card className="w-full flex flex-row py-2 font-secondary">
                 <CardHeader
                     shadow={false}
                     floated={false}
-                    className="m-0 w-2/5 shrink-0 rounded-r-none"
+                    className="w-full h-full"
                 >
-                    <img
-                    src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80"
-                    alt="card-image"
-                    className="h-full w-full object-cover"
-                    />
+                    <Typography variant="h3" color="blue" className="w-full h-full mb-3 flex justify-center items-center font-secondary">
+                        {auth=="login" ? "Login" : "Register"}
+                    </Typography>
+                    <Typography variant="paragraph" className="font-primary" >
+                        {auth=="login" ? "Get access to your Orders, Wishlist and Recommendations" : "Sign up with your Basic Information to get started"}
+                    </Typography>
+                    <ReactSVG loading={() => <span>Loading</span>} src="/lotties/login.svg">
+                        SVG is not supported
+                    </ReactSVG>
                 </CardHeader>
-                <CardBody>
-                    <Typography variant="h6" color="gray" className="mb-4 uppercase">
-                    startups
-                    </Typography>
-                    <Typography variant="h4" color="blue-gray" className="mb-2">
-                    Lyft launching cross-platform service this week
-                    </Typography>
-                    <Typography color="gray" className="mb-8 font-normal">
-                    Like so many organizations these days, Autodesk is a company in
-                    transition. It was until recently a traditional boxed software company
-                    selling licenses. Yet its own business model disruption is only part
-                    of the story
-                    </Typography>
-                    <a href="#" className="inline-block">
-                    <Button variant="text" className="flex items-center gap-2">
-                        Learn More
-                        <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={2}
-                        className="h-4 w-4"
+                <div className="w-full h-full justify-center flex flex-col">
+                    <CardBody className="flex flex-col gap-3">
+                        <Input label="Email" size="lg" />
+                        <Input label="Password" size="lg" />
+                        <Typography
+                            variant="small"
+                            color="blue"
+                            className="w-full h-full flex justify-end cursor-pointer font-secondary"
                         >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
-                        />
-                        </svg>
-                    </Button>
-                    </a>
-                </CardBody>
+                            Forget Password?
+                        </Typography>
+                        <div className="-ml-2.5">
+                            <Checkbox label="Remember Me" color="blue" />
+                        </div>
+                    </CardBody>
+                    <CardFooter className="pt-0 flex flex-col gap-3">
+                        <Typography variant="small" className="font-primary" >By continuing, you agree to Cracky's <Link to={"/"} className="text-blue-200" >Conditions of Use</Link> and <Link to={"/"} className="text-blue-200" >Privacy Notice</Link>.</Typography>
+                        <Button variant="gradient" color="blue" fullWidth className="font-secondary">
+                            Sign In
+                        </Button>
+                        <Typography variant="paragraph" className="mt-6 flex justify-center">
+                            New to Cracky?
+                            <Typography
+                                variant="paragraph"
+                                color="blue"
+                                className="ml-1 font-secondary cursor-pointer"
+                            >
+                            Create an account
+                            </Typography>
+                        </Typography>
+                    </CardFooter>
+                </div>
                 </Card>
             </DialogBody>
         </Dialog>
