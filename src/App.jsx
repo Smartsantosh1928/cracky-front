@@ -10,7 +10,7 @@ import { SetUser, RemoveUser } from "./store/UserSlice";
 function App() {
 
   const dispatch = useDispatch();
-  const isMobile = useSelector(state => state.device.isMobile);
+  const user = useSelector(state => state.user.user);
 
   const handleResize = () => {
     if (window.innerWidth < 768) {
@@ -20,19 +20,18 @@ function App() {
     }
   }
 
-  useGoogleOneTapLogin({
-    onError: error => {
-      console.log(error);
-      dispatch(RemoveUser());
-    },
-    onSuccess: response => {
-      console.log(response);
-      dispatch(SetUser(response));
-    },
-    googleAccountConfigs: {
-      client_id: "595225179666-msgtfmk4avtiu3ujd0e6cd9d1oukmkhv.apps.googleusercontent.com"
-    },
-  });
+  // useGoogleOneTapLogin({
+  //   onError: error => {
+  //     console.log(error);
+  //     dispatch(RemoveUser());
+  //   },
+  //   onSuccess: response => {
+  //     dispatch(SetUser(response));
+  //   },
+  //   googleAccountConfigs: {
+  //     client_id: "595225179666-msgtfmk4avtiu3ujd0e6cd9d1oukmkhv.apps.googleusercontent.com"
+  //   },
+  // });
 
   useEffect(() => {  
     if (window.innerWidth < 768) {
@@ -47,7 +46,7 @@ function App() {
     return () => {
       window.removeEventListener('resize', handleResize);
     }; 
-  }, []);
+  }, [user]);
 
   return (
     <>
