@@ -24,3 +24,26 @@ body {
      6% {transform: translateX(3px)}
      7% {transform: translateX(0)}
 }
+
+/* src/index.css */
+   @keyframes slideLeft {
+     
+     100% {
+       transform: translateX(-100%);
+     }
+   }
+   
+   @keyframes slideRight {  
+     100% {
+       transform: translateX(100%);
+     }
+   }
+   
+   .animate-left {
+     animation: slideLeft  linear;
+   }
+   
+   .animate-right {
+     animation: slideRight  linear;
+   }
+  
