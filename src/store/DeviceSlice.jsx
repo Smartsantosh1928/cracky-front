@@ -6,8 +6,8 @@ const DeviceSlice = createSlice({
     isMobile : false,
   },
   reducers: {
-    ToggleDevice : (state) => {
-      state.isMobile = !state.isMobile;
+    ToggleDevice : (state, action) => {
+      state.isMobile = action.payload;
     }
   },
 });

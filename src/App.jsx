@@ -11,42 +11,43 @@ function App() {
 
   const dispatch = useDispatch();
   const user = useSelector(state => state.user.user);
+  
+    // useGoogleOneTapLogin({
+    //   onError: error => {
+    //     console.log(error);
+    //     dispatch(RemoveUser());
+    //   },
+    //   onSuccess: response => {
+    //     dispatch(SetUser(response));
+    //   },
+    //   googleAccountConfigs: {
+    //     client_id: "595225179666-msgtfmk4avtiu3ujd0e6cd9d1oukmkhv.apps.googleusercontent.com"
+    //   },
+    // });
 
-  const handleResize = () => {
-    if (window.innerWidth < 768) {
-      dispatch(ToggleDevice(true));
-    } else {
-      dispatch(ToggleDevice(false));
-    }
-  }
+  useEffect(() => {
+    let timeoutId = null;
 
-  // useGoogleOneTapLogin({
-  //   onError: error => {
-  //     console.log(error);
-  //     dispatch(RemoveUser());
-  //   },
-  //   onSuccess: response => {
-  //     dispatch(SetUser(response));
-  //   },
-  //   googleAccountConfigs: {
-  //     client_id: "595225179666-msgtfmk4avtiu3ujd0e6cd9d1oukmkhv.apps.googleusercontent.com"
-  //   },
-  // });
-
-  useEffect(() => {  
-    if (window.innerWidth < 768) {
-      console.log("mobile");
-      dispatch(ToggleDevice(true));
-    } else {
-      console.log("laptop");
-      dispatch(ToggleDevice(false));
-    }
+    const handleResize = () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+      timeoutId = setTimeout(() => {
+        dispatch(ToggleDevice(window.innerWidth < 768));
+      }, 100); // 100ms delay for debounce
+    };
+    // Check initially and set up the resize event listener
+    handleResize();
     window.addEventListener('resize', handleResize);
-
+    // Cleanup function to remove the event listener
     return () => {
       window.removeEventListener('resize', handleResize);
-    }; 
-  }, [user]);
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
+  }, []);
+
 
   return (
     <>

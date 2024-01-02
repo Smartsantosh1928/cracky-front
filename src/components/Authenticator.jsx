@@ -65,7 +65,7 @@ export function Authenticator() {
            <CardHeader
                     shadow={true}
                     floated={false}
-                    className={`w-full h-full z-50  transition-all  duration-[700ms] ${auth=="login" ? 'translate-x-0 bg-white' : 'bg-white translate-x-full'} `}
+                    className={`w-full h-full z-50  transition-all  duration-[700ms] ${auth=="login" ? 'translate-x-0 bg-white' : 'bg-white translate-x-full'} ${auth=='login' ? 'animate-slideLeft' : 'animate-slideRight'} `}
                 > { auth=="login" ?
                     (<div className=" flex flex-col justify-center  ">
                     <Typography variant="h3" color="blue" className="w-full h-full mb-3 mt-5  text-center items-center font-primary">
@@ -91,14 +91,13 @@ export function Authenticator() {
                     </div>)}
                 </CardHeader>
                 
-                <div className={`w-full h-full justify-center flex flex-col transition-transform duration-[700ms] ${auth=='login' ? 'translate-x-0' : '-translate-x-full'} ${auth=='lgin' ? 'animate-slideLeft' : 'animate-slideRight'}`}>
+                <div className={`w-full h-full justify-center flex flex-col transition-transform duration-[700ms] ${auth=='login' ? 'translate-x-0' : '-translate-x-full'} ${auth=='login' ? 'animate-slideLeft' : 'animate-slideRight'}`}>
                 {auth=="login" ?(
                     <div className="mt-10">
                     <CardBody className="flex flex-col gap-3">
                         <Input label="Email" variant="outlined" size="lg"/>
                         <Input label="Password" size="lg" />
                         <Typography
-
                             variant="small"
                             color="blue"
                             className="w-full h-full flex justify-end cursor-pointer font-secondary"
