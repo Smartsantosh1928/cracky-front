@@ -1,5 +1,5 @@
 import React from 'react'
-import { Navbar,Banner,ShopCards } from '../components'
+import { Navbar,Banner,ShopCards,Footer } from '../components'
 
 export function Home() {
 
@@ -8,6 +8,7 @@ export function Home() {
       <Navbar />
       <Banner />
       <ShopCards/>
+      <Footer />
     </div>
   )
 }
