@@ -62,15 +62,22 @@ export function Navbar() {
           <Input label={"Search "+placeholders[currentPlaceholderIndex]+"..."} className='bg-white' color='blue-gray' size='lg' icon={<FcSearch className='w-6 h-6' />} />
         </div>}
           <div className='w-full flex justify-end items-center'>
-            <div className='w-full md:w-[90%] flex justify-center -mr-6 gap-4 md:gap-0 md:justify-evenly items-center'>
+            <div className='w-full md:w-[90%] flex justify-center md:-mr-6 gap-4 md:gap-0 md:justify-evenly items-center'>
               {user==null && 
               <div className='relative flex flex-col'>
                 <Button variant="gradient" color='blue-gray' className='rounded-full flex  items-center gap-3 py-2 font-secondary font-bold' onClick={handleLogin} >Login
                   <CgProfile className='w-6 h-6' />
                 </Button>
-                {(!isMobile && isShaking) && <button onClick={handleRegister} className='w-full h-full absolute mt-14 text-white bg-blue-400 z-50 flex justify-center items-center gap-3 py-2 font-secondary font-bold shake-login' >Sign Up
-                  <CgProfile className='w-6 h-6' />
-                </button>}
+                {(!isMobile && isShaking) && (
+                <div className='absolute -bottom-14 z-40 ' >
+                  <div className='shake-login w-full'> 
+                    <button onClick={handleRegister} className='relative w-full h-full  text-white bg-blue-400 flex justify-center items-center gap-3 py-2 px-2.5 font-secondary font-bold ' >
+                      Sign Up
+                      <CgProfile className='w-6 h-6' />
+                    </button>
+                    <span className='absolute -top-1 left-[46%] z-40 w-3 h-3  bg-blue-400 rotate-45'></span>
+                  </div>
+                </div>)}
               </div>}
               {isMobile ? <Tooltip
                 content="Cart"
