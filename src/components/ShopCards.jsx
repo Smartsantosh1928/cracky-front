@@ -14,9 +14,7 @@ export function ShopCards() {
         <ShopCard/>
         <ShopCard/>   
         <ShopCard/>
-        <ShopCard/>   
-        <ShopCard/>
-        <ShopCard/>   
+      
     </div>
 }
 export default ShopCards;
