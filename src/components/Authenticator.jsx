@@ -127,7 +127,6 @@ export function Authenticator() {
 
     const handleSignIn = () => {
         console.log(details);
-
     }
 
     const handleSignUp = async () => {
