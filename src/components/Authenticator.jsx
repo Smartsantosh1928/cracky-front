@@ -81,6 +81,18 @@ export function Authenticator() {
               password: 'Password must be at least 8 characters long.',
             }));
           }
+          if (value !== details.confirmPassword) {
+            console.log("here");
+            setErrors((prevErrors) => ({
+              ...prevErrors,
+              confirmPassword: "Passwords don't match.",
+            }));
+          }else{
+            setErrors((prevErrors) => ({
+                ...prevErrors,
+                confirmPassword: "",
+              }));
+          }
         } else if (name === 'confirmPassword') {
           if (value !== details.password) {
             setErrors((prevErrors) => ({
@@ -129,7 +141,7 @@ export function Authenticator() {
     }
 
     const handleGoogleSignIn = () => {
-        window.location.href = "http://localhost:3000/auth/google"
+        window.location.href = `${url}/auth/google`
     }
 
     const handleFBSignIn = () => {
@@ -157,10 +169,9 @@ export function Authenticator() {
             <CardHeader
                     shadow={true}
                     floated={false}
-                    className={`w-full h-full z-40  transition-all  duration-[700ms] ${auth=="login" ? 'translate-x-0 bg-white' : 'bg-white translate-x-full'} `}
-                >
-                     { auth=="login" ?
-                    (<div className="flex flex-col justify-center">
+                    className={`w-full h-full z-50  transition-all  duration-[700ms] ${auth=="login" ? 'translate-x-0 bg-white' : 'bg-white translate-x-full'} ${auth=='login' ? 'animate-slideLeft' : 'animate-slideRight'} `}
+                > { auth=="login" ?
+                    (<div className=" flex flex-col justify-center  ">
                     <Typography variant="h3" color="blue" className="w-full h-full mb-3 mt-5  text-center items-center font-primary">
                         Login
                     </Typography>
@@ -184,7 +195,7 @@ export function Authenticator() {
                     </div>)}
                 </CardHeader>
                 
-                <div className={`w-full h-full justify-center flex flex-col transition-transform duration-[700ms] ${auth=='login' ? 'translate-x-0' : '-translate-x-full'} ${auth=='lgin' ? 'animate-slideLeft' : 'animate-slideRight'}`}>
+                <div className={`w-full h-full justify-center flex flex-col transition-transform duration-[700ms] ${auth=='login' ? 'translate-x-0' : '-translate-x-full'} ${auth=='login' ? 'animate-slideLeft' : 'animate-slideRight'}`}>
                 {auth=="login" ?(
                     <div className="mt-10">
                     <CardBody className="flex flex-col gap-3">
@@ -233,12 +244,16 @@ export function Authenticator() {
                         <div className="w-full h-full mt-2 flex justify-center items-center flex-col ">
                             <span className="border border-b-0 border-blue-gray-300 w-[90%]"></span>
                             <div className="w-full h-full mt-4 flex justify-center items-center gap-5">
-                                <Card className="p-3 cursor-pointer" onClick={handleGoogleSignIn}>
-                                    <FcGoogle className="w-6 h-6" />
-                                </Card>
-                                <Card className="p-3 cursor-pointer" onClick={handleFBSignIn} >
-                                    <FaFacebook className="w-6 h-6 text-blue-500" />
-                                </Card>
+                                <a href={ `${url}/auth/google`}>
+                                    <Card className="p-3 cursor-pointer" onClick={handleGoogleSignIn}>
+                                        <FcGoogle className="w-6 h-6" />
+                                    </Card>
+                                </a>
+                                <a href={ `${url}/auth/facebook`}>
+                                    <Card className="p-3 cursor-pointer" onClick={handleFBSignIn} >
+                                        <FaFacebook className="w-6 h-6 text-blue-500" />
+                                    </Card>
+                                </a>
                             </div>
                         </div>
                     </CardFooter>
@@ -291,12 +306,16 @@ export function Authenticator() {
                         <div className="w-full h-full flex justify-center items-center flex-col">
                             <span className="border border-b-0 border-blue-gray-300 w-[90%]"></span>
                             <div className="w-full h-full mt-4 flex justify-center items-center gap-5">
-                                <Card className="p-3">
-                                    <FcGoogle className="w-6 h-6" onClick={handleGoogleSignIn} />
-                                </Card>
-                                <Card className="p-3">
-                                    <FaFacebook className="w-6 h-6 text-blue-500" onClick={handleFBSignIn} />
-                                </Card>
+                            <a href={ `${url}/auth/google`}>
+                                    <Card className="p-3 cursor-pointer" onClick={handleGoogleSignIn}>
+                                        <FcGoogle className="w-6 h-6" />
+                                    </Card>
+                                </a>
+                                <a href={ `${url}/auth/facebook`}>
+                                    <Card className="p-3 cursor-pointer" onClick={handleFBSignIn} >
+                                        <FaFacebook className="w-6 h-6 text-blue-500" />
+                                    </Card>
+                                </a>
                             </div>
                         </div>
                     </CardFooter>

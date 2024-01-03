@@ -2,27 +2,11 @@ import { useState, useEffect } from 'react'
 import {Carousel} from 'react-responsive-carousel'
 import { images } from '../data/bannerdata';
 import { PiArrowFatLinesLeft,PiArrowFatLinesRight } from "react-icons/pi";
+import { useSelector } from 'react-redux';
 
 export function Banner() {
-    const [isMobile,setIsMobile] = useState(false);
-    function handleResize(){
-        if(window.innerWidth<768){
-            setIsMobile(true)
-        }else{
-            setIsMobile(false)
-        }
-    }
-    useEffect(()=>{
-        if(window.innerWidth<768){
-            setIsMobile(true)
-        }else{
-            setIsMobile(false)
-        }
-        window.addEventListener('resize',handleResize);
-        return ()=>{
-            window.removeEventListener('resize',handleResize);
-        }
-    },[])
+    const isMobile = useSelector(state => state.device.isMobile);
+   
     console.log(isMobile);
     return <section className='lg:min-h-[87vh] w-full'>
            <Carousel
