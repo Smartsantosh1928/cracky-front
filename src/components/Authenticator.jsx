@@ -153,15 +153,7 @@ export function Authenticator() {
         >
             <DialogBody className="relative grid place-items-center gap-4 ">
             <Card className={`w-full flex flex-row justify-between pb-5 font-secondary bg-[#f1eaff] `} >
-            {/* <IconButton
-                color="blue-gray"
-                className="absolute top-0 right-0 z-50"
-                size="md"
-                variant="text"
-                onClick={() => dispatch(LogoutAuth())}
-            >
-                <IoIosCloseCircleOutline className="w-7 h-7" />
-            </IconButton>     */}
+            <IoIosCloseCircleOutline className="w-7 h-7 absolute -top-12 -right-12 bg-white rounded-full cursor-pointer z-50" onClick={() => dispatch(LogoutAuth())} />
             <CardHeader
                     shadow={true}
                     floated={false}
