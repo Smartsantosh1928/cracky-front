@@ -82,7 +82,6 @@ export function Authenticator() {
             }));
           }
           if (value !== details.confirmPassword) {
-            console.log("here");
             setErrors((prevErrors) => ({
               ...prevErrors,
               confirmPassword: "Passwords don't match.",
@@ -138,14 +137,6 @@ export function Authenticator() {
             emailOffers: details.emailOffers
         })
         console.log(data);
-    }
-
-    const handleGoogleSignIn = () => {
-        window.location.href = `${url}/auth/google`
-    }
-
-    const handleFBSignIn = () => {
-        window.location.href = "http://localhost:3000/auth/facebook"
     }
 
     const handleForgetPassword = () => {
@@ -245,12 +236,12 @@ export function Authenticator() {
                             <span className="border border-b-0 border-blue-gray-300 w-[90%]"></span>
                             <div className="w-full h-full mt-4 flex justify-center items-center gap-5">
                                 <a href={ `${url}/auth/google`}>
-                                    <Card className="p-3 cursor-pointer" onClick={handleGoogleSignIn}>
+                                    <Card className="p-3 cursor-pointer" >
                                         <FcGoogle className="w-6 h-6" />
                                     </Card>
                                 </a>
                                 <a href={ `${url}/auth/facebook`}>
-                                    <Card className="p-3 cursor-pointer" onClick={handleFBSignIn} >
+                                    <Card className="p-3 cursor-pointer" >
                                         <FaFacebook className="w-6 h-6 text-blue-500" />
                                     </Card>
                                 </a>
@@ -307,12 +298,12 @@ export function Authenticator() {
                             <span className="border border-b-0 border-blue-gray-300 w-[90%]"></span>
                             <div className="w-full h-full mt-4 flex justify-center items-center gap-5">
                             <a href={ `${url}/auth/google`}>
-                                    <Card className="p-3 cursor-pointer" onClick={handleGoogleSignIn}>
+                                    <Card className="p-3 cursor-pointer" >
                                         <FcGoogle className="w-6 h-6" />
                                     </Card>
                                 </a>
                                 <a href={ `${url}/auth/facebook`}>
-                                    <Card className="p-3 cursor-pointer" onClick={handleFBSignIn} >
+                                    <Card className="p-3 cursor-pointer" >
                                         <FaFacebook className="w-6 h-6 text-blue-500" />
                                     </Card>
                                 </a>
