@@ -5,7 +5,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { useDispatch, useSelector } from 'react-redux';
 import { ToggleDevice } from "./store/DeviceSlice";
 import { useGoogleOneTapLogin } from 'react-google-one-tap-login';
-
+import SellerHome from './pages/sellerHome'
 function App() {
 
   const dispatch = useDispatch();
@@ -44,10 +44,11 @@ function App() {
 
   return (
     <>
-      <Routes>
+      {/* <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="/" element={<Navigate to="/home" replace />} />
-      </Routes>
+      </Routes> */}
+      <SellerHome/>
     </>
   )
 }
