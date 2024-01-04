@@ -45,10 +45,12 @@ export function Navbar() {
     const accessToken = cookies.get('accessToken');
     const refreshToken = cookies.get('refreshToken');
 
-    if (accessToken && refreshToken) {
+    console.log(accessToken, refreshToken);
+
+    if (accessToken && sessionStorage.getItem("accessToken")) 
       sessionStorage.setItem("accessToken", accessToken);
+    if (refreshToken && localStorage.getItem("refreshToken")) 
       localStorage.setItem("refreshToken", refreshToken);
-    }
   },[])
 
   useEffect(() => {
