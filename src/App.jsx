@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 import { Home } from "./pages/Home"
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, Navigate } from "react-router-dom"
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { useDispatch, useSelector } from 'react-redux';
 import { ToggleDevice } from "./store/DeviceSlice";
@@ -45,7 +45,8 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Navigate to="/home" replace />} />
       </Routes>
     </>
   )
