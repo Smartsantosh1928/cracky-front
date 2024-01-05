@@ -20,6 +20,7 @@ import { LoginAuth, RegisterAuth } from '../store/AuthSlice';
 import Authenticator from './Authenticator';
 import Cookies from 'universal-cookie';
 import { SetUser, RemoveUser } from "../store/UserSlice";
+import axios from "../utils/axios.config"
 
 export function Navbar() {
 
@@ -42,21 +43,48 @@ export function Navbar() {
   }
 
   useEffect(() => {
-    const accessToken = cookies.get('accessToken');
-    const refreshToken = cookies.get('refreshToken');
+    if(user==null){
+      const accessToken = cookies.get('accessToken');
+      const refreshToken = cookies.get('refreshToken');
 
-    console.log(accessToken, refreshToken);
+      console.log(accessToken, refreshToken);
 
-    if (accessToken && sessionStorage.getItem("accessToken")) 
-      sessionStorage.setItem("accessToken", accessToken);
-    if (refreshToken && localStorage.getItem("refreshToken")) 
-      localStorage.setItem("refreshToken", refreshToken);
+      if (accessToken) 
+        sessionStorage.setItem("accessToken", accessToken);
+      if (refreshToken) 
+        localStorage.setItem("refreshToken", refreshToken);
+      axios.get("/auth/me")
+      .then((res) => {
+        dispatch(SetUser(res.data.user));
+      }).catch((err) => {
+        console.log(err);
+      })
+  }
+
   },[])
 
   useEffect(() => {
-    const accessToken = sessionStorage.getItem("accessToken");
-    console.log(accessToken);
+    if(user==null){
+      axios.get("/auth/me")
+      .then((res) => {
+        console.log(res.data.user);
+        dispatch(SetUser(res.data.user));
+      })
+    }
   },[auth])
+
+  const handleSignOut = () => {
+    axios.post("/auth/logout")
+    .then((res) => {
+      dispatch(RemoveUser());
+      sessionStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
+      cookies.remove('accessToken');
+      cookies.remove('refreshToken');
+    }).catch((err) => {
+      console.log(err);
+    })
+  }
 
   useEffect(() => {
     setTimeout(() => {
@@ -82,7 +110,7 @@ export function Navbar() {
           <Input label={"Search "+placeholders[currentPlaceholderIndex]+"..."} className='bg-white' color='blue-gray' size='lg' icon={<FcSearch className='w-6 h-6' />} />
         </div>}
           <div className='w-full flex justify-end items-center'>
-            <div className='w-full md:w-[90%] flex justify-center md:-mr-6 gap-4 md:gap-0 md:justify-evenly items-center'>
+            <div className='w-full md:w-[90%] flex justify-end md:mr-0 gap-6 md:gap-4 mr-4 items-center'>
               {user==null && 
               <div className='relative flex flex-col'>
                 <Button variant="gradient" color='blue-gray' className='rounded-full flex  items-center gap-3 py-2 font-secondary font-bold' onClick={handleLogin} >Login
@@ -106,7 +134,7 @@ export function Navbar() {
                   unmount: { scale: 0, y: 25 },
                 }}
               >
-                <Typography variant='paragraph' >
+                <Typography variant='paragraph' className="cursor-pointer" >
                   <BsCartCheck className='w-6 h-6' />
                 </Typography>
               </Tooltip>
@@ -120,7 +148,7 @@ export function Navbar() {
                   unmount: { scale: 0, y: 25 },
                 }}
               >
-                <Typography variant='paragraph'>
+                <Typography variant='paragraph' className="cursor-pointer">
                   <FcShop className='w-6 h-6' />
                 </Typography>
               </Tooltip> : <Button variant="text" color='blue-gray' className='rounded-full justify-center flex items-center gap-3 font-secondary font-bold '>Become a Seller
@@ -130,9 +158,9 @@ export function Navbar() {
                 <MenuHandler>
                   {user==null ? <IconButton variant="outlined" color='blue-gray' className='rounded-full mr-4 md:mr-0' ><FcBusinessman className='w-8 h-8 cursor-pointer' /></IconButton> : <Avatar
                     variant="circular"
-                    alt="User Name"
+                    alt="User Profile"
                     className="cursor-pointer"
-                    src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
+                    src={user ? user.profilePictureUrl : "https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"}
                   />}
                 </MenuHandler>
                 <MenuList>
@@ -173,7 +201,7 @@ export function Navbar() {
                     </Typography>
                   </MenuItem>
                   {user!=null && <><hr className="my-2 border-blue-gray-50" />
-                  <MenuItem className="flex items-center gap-2 ">
+                  <MenuItem className="flex items-center gap-2 " onClick={handleSignOut}>
                     <LiaSignOutAltSolid className='w-5 h-5' />
                     <Typography variant="small" className="font-medium">
                       Sign Out
