@@ -18,17 +18,20 @@ import { PiPackageBold } from "react-icons/pi";
 import { useDispatch, useSelector } from 'react-redux';
 import { LoginAuth, RegisterAuth } from '../store/AuthSlice';
 import Authenticator from './Authenticator';
- 
+import Cookies from 'universal-cookie';
+import { SetUser, RemoveUser } from "../store/UserSlice";
+
 export function Navbar() {
 
   const placeholders = ['Crackers', 'Sparklers', 'Fountains', 'Rockets', 'Fireworks'];
   const [currentPlaceholderIndex, setCurrentPlaceholderIndex] = useState(0);
-  const [ user, setUser ] = useState(null);
   const [isShaking, setShaking] = useState(true);
-
+  
   const dispatch = useDispatch();
   const auth = useSelector(state => state.auth.auth);
   const isMobile = useSelector(state => state.device.isMobile);
+  const user = useSelector(state => state.user.user);
+  const cookies = new Cookies();
 
   const handleLogin = () => {
     dispatch(LoginAuth());
@@ -37,6 +40,23 @@ export function Navbar() {
   const handleRegister = () => {
     dispatch(RegisterAuth());
   }
+
+  useEffect(() => {
+    const accessToken = cookies.get('accessToken');
+    const refreshToken = cookies.get('refreshToken');
+
+    console.log(accessToken, refreshToken);
+
+    if (accessToken && sessionStorage.getItem("accessToken")) 
+      sessionStorage.setItem("accessToken", accessToken);
+    if (refreshToken && localStorage.getItem("refreshToken")) 
+      localStorage.setItem("refreshToken", refreshToken);
+  },[])
+
+  useEffect(() => {
+    const accessToken = sessionStorage.getItem("accessToken");
+    console.log(accessToken);
+  },[auth])
 
   useEffect(() => {
     setTimeout(() => {

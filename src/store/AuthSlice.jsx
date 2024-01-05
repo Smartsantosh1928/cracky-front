@@ -12,11 +12,14 @@ const AuthSlice = createSlice({
     RegisterAuth : (state) => {
       state.auth = "register";
     },
+    ForgetPassword: (state) => {
+      state.auth = "forgetPassword";
+    },
     LogoutAuth : (state) => {
       state.auth = null;
     }
   },
 });
 
-export const { LoginAuth, RegisterAuth, LogoutAuth } = AuthSlice.actions;
+export const { LoginAuth, RegisterAuth, LogoutAuth, ForgetPassword } = AuthSlice.actions;
 export default AuthSlice.reducer;
