@@ -1,14 +1,15 @@
 import { useState, useEffect } from 'react'
 import { 
   Breadcrumbs,
-  Avatar,
   Card,
   Typography,
-  Tooltip } from "@material-tailwind/react"
+  CardBody } from "@material-tailwind/react"
 import banimg from "/img/svks.webp" 
 import { IoHome } from "react-icons/io5";
 import { Link } from 'react-router-dom';
 import { BsChevronDoubleRight } from "react-icons/bs";
+import { HiOutlineUserGroup } from "react-icons/hi";
+import { SlWallet } from "react-icons/sl";
 export function SBanner() {
      return (
      <>
@@ -26,6 +27,33 @@ export function SBanner() {
                         <Typography className='font-primary font-bold text-black/80 text-5xl mt-10'>Sell Online with Cracky</Typography>
                     </div>
                 </div>
+            </div>
+            <div className='flex justify-center items-center'>
+                <Card shadow={false} className='shado drop-shadow-xl w-[75%]'>
+                    <CardBody className='w-full flex justify-between '>
+                        <div className='w-1/5 flex flex-col items-center gap-3 justify-center'>
+                            <HiOutlineUserGroup strokeWidth={1} className='text-blue-600 h-12 w-12'/>
+                            <Typography className='font-secondary text-black/80 text-center'>45 crore+ Flipkart  customers</Typography>
+                        </div>
+                        <span className='w-.0 h-1 bg-black'></span>
+                        <div className='w-1/5 flex flex-col items-center gap-3 justify-center'>
+                            <SlWallet    strokeWidth={1} className='text-blue-600 h-12 w-12'/>
+                            <Typography className='font-secondary text-black/80 text-center'>45 crore+ Flipkart  customers</Typography>
+                        </div>
+                        <div className='w-1/5 flex flex-col items-center gap-3 justify-center'>
+                            <HiOutlineUserGroup strokeWidth={1} className='text-blue-600 h-12 w-12'/>
+                            <Typography className='font-secondary text-black/80 text-center'>45 crore+ Flipkart  customers</Typography>
+                        </div>
+                        <div className='w-1/5 flex flex-col items-center gap-3 justify-center'>
+                            <HiOutlineUserGroup strokeWidth={1} className='text-blue-600 h-12 w-12'/>
+                            <Typography className='font-secondary text-black/80 text-center'>45 crore+ Flipkart  customers</Typography>
+                        </div>
+                        <div className='w-1/5 flex flex-col items-center gap-3 justify-center'>
+                            <HiOutlineUserGroup strokeWidth={1} className='text-blue-600 h-12 w-12'/>
+                            <Typography className='font-secondary text-black/80 text-center'>45 crore+ Flipkart  customers</Typography>
+                        </div>
+                    </CardBody>
+                </Card>
             </div>
         </section>
      </>
