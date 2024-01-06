@@ -51,8 +51,7 @@ const menuItems = [
   
 export function SNavbar() {
      return (
-     <>
-     <nav className="overflow-hidden w-full bg-white h-full  md:h-16 flex justify-between items-center pl-6  md:py-0">
+     <nav className="overflow-hidden w-full  z-50 bg-white h-full  md:h-16 flex justify-between items-center pl-6  md:py-0">
      <div className='flex justify-start items-center'>
       <Avatar
             alt="Cracky"
@@ -71,7 +70,6 @@ export function SNavbar() {
         <Button className='bg-yellow-700 lowercase text-black  p-8 md:text-xl font-normal font-secondary'>Start Selling </Button>
       </div>
      </nav>
-     </>
   )
 }
 

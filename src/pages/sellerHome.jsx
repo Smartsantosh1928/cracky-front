@@ -1,10 +1,11 @@
 import React from 'react'
-import {SNavbar} from "../components/seller"
+import {SNavbar,SBanner} from "../components/seller"
 export function SellerHome() {
 
   return (
     <div>
       <SNavbar/>
+      <SBanner/>
     </div>
   )
 }
