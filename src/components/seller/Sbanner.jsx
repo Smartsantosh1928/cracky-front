@@ -13,7 +13,6 @@ import { PiWalletLight,PiChartLineDownThin,PiHeadphonesLight,PiHandbagThin } fro
 import { LiaCartArrowDownSolid } from "react-icons/lia";
 export function SBanner() {
      return (
-     <>
         <section className='bg-white -z-10 min-h-[91vh]'>
             <div className='relative flex justify-center '>
                 <img src={banimg} alt="" className=' h-66 w-[75%] ' />
@@ -60,7 +59,6 @@ export function SBanner() {
                 </Card>
             </div>
         </section>
-     </>
   )
 }
 
