@@ -216,6 +216,9 @@ export function Navbar() {
           <Input label={"Search "+placeholders[currentPlaceholderIndex]+"..."} className='bg-white' color='blue-gray' size='lg' icon={<FcSearch className='w-6 h-6' />} />
       </div>}
       {auth!=null && <Authenticator />}
+      <div className='w-full h-full flex justify-center items-center mt-2'>
+        <span className="border border-b-0 border-gray-500 w-full"></span>
+      </div>
     </>
   )
 }
