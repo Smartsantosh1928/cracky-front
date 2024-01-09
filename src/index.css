@@ -46,4 +46,13 @@ body {
    .animate-right {
      animation: slideRight  linear;
    }
-  
+
+.active{
+  background: #F5FBFF;
+  border: 1px solid rgb(11, 11, 47);
+  border-radius: 10px;
+  transform: scale(1.06);
+  font-weight: bolder;
+  color:rgb(11, 11, 47);
+  font-size: 18px;
+}

@@ -130,6 +130,7 @@ export function Authenticator() {
     }
 
     const handleSignIn = () => {
+        console.log(details);
         axios.post(url + "/auth/login", {
             email: details.email,
             password: details.password
