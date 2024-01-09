@@ -11,10 +11,10 @@ export function SContent() {
             <div className='sticky top-14 mt-5 h-[370px] bottom-5 w-1/5 '>
                <div className='flex flex-col'>
                   {submenus.map(({title,href},index)=>{
-                     return ( <Link activeClass='active  ' className='cursor-pointer transition-transform duration-300 text-md' smooth={true} spy={true} offset={-60} to={href}>                      
+                     return ( <Link activeClass='active' className='cursor-pointer font-thin transition-transform duration-300 text-md' smooth={true} spy={true} offset={-60} to={href}>                      
                               <div className=' p-2 font-extralight text-left flex justify-start items-center'>
                                  <BsChevronDoubleRight  className={`hidden`}/>
-                                 <span className='translate-x-5'>{title}</span>
+                                 <span className='translate-x-9'>{title}</span>
                               </div>                
                      </Link> )
                   })}
