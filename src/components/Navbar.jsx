@@ -27,7 +27,8 @@ export function Navbar() {
   const placeholders = ['Crackers', 'Sparklers', 'Fountains', 'Rockets', 'Fireworks'];
   const [currentPlaceholderIndex, setCurrentPlaceholderIndex] = useState(0);
   const [isShaking, setShaking] = useState(true);
-  
+  const [ accessToken, setAccessToken ] = useState(null);
+
   const dispatch = useDispatch();
   const auth = useSelector(state => state.auth.auth);
   const isMobile = useSelector(state => state.device.isMobile);
@@ -46,21 +47,19 @@ export function Navbar() {
     if(user==null){
       const accessToken = cookies.get('accessToken');
       const refreshToken = cookies.get('refreshToken');
-
+      if(accessToken) setAccessToken(accessToken);
       console.log(accessToken, refreshToken);
 
-      if (accessToken) 
+      if (accessToken && sessionStorage.getItem("accessToken") === null)
         sessionStorage.setItem("accessToken", accessToken);
-      if (refreshToken) 
+      if (refreshToken && localStorage.getItem("refreshToken") === null)
         localStorage.setItem("refreshToken", refreshToken);
-      axios.get("/auth/me")
-      .then((res) => {
-        dispatch(SetUser(res.data.user));
-      }).catch((err) => {
-        console.log(err);
-      })
-  }
+    }
+  },[])
 
+  useEffect(() => {
+    const accessToken = sessionStorage.getItem("accessToken");
+    if(accessToken) setAccessToken(accessToken);
   },[])
 
   useEffect(() => {
@@ -71,7 +70,7 @@ export function Navbar() {
         dispatch(SetUser(res.data.user));
       })
     }
-  },[auth])
+  },[auth, accessToken])
 
   const handleSignOut = () => {
     axios.post("/auth/logout")
