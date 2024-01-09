@@ -1,10 +1,11 @@
 import React, { useEffect } from "react"
-import { Home } from "./pages/Home"
+import { Home } from "./pages/user/Home"
 import { Routes, Route, Navigate } from "react-router-dom"
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { useDispatch, useSelector } from 'react-redux';
 import { ToggleDevice } from "./store/DeviceSlice";
 import { useGoogleOneTapLogin } from 'react-google-one-tap-login';
+import Dashboard from "./layout/user/dashboard";
 
 function App() {
 
@@ -45,8 +46,8 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/home" element={<Home />} />
-        <Route path="/" element={<Navigate to="/home" replace />} />
+        <Route path="/user/*" element={<Dashboard />} />
+        <Route path="/" element={<Navigate to="/user" replace />} />
       </Routes>
     </>
   )
