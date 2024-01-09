@@ -324,7 +324,7 @@ export function Authenticator() {
                     </CardFooter>
                 </div>)}
                 {auth=="forgetPassword" &&(
-                    <div className="-ml-10 md:px-3">
+                    <div className="ml-0 md:-ml-10 md:px-3">
                     <CardBody className="flex flex-col gap-3">
                         <Input label="Email" size="lg" name="email" value={details.email} onChange={handleChange} />
                         {errors.email!="" && <Typography
@@ -369,7 +369,7 @@ export function Authenticator() {
                 </div>
                 )}
                 {auth=="register"&&(
-                    <div className="-ml-10 md:px-3">
+                    <div className="ml-0 md:-ml-10 md:px-3">
                     <CardBody className="flex flex-col gap-3">
                         <Input label="Email" size="lg" name="email" value={details.email} onChange={handleChange} />
                         {errors.email!="" && <Typography

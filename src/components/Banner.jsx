@@ -7,7 +7,6 @@ import { useSelector } from 'react-redux';
 export function Banner() {
     const isMobile = useSelector(state => state.device.isMobile);
    
-    console.log(isMobile);
     return <section className='lg:min-h-[87vh] w-full'>
            <Carousel
                 renderArrowPrev={(onClickHandler, hasPrev, label) =>

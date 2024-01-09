@@ -27,7 +27,8 @@ export function Navbar() {
   const placeholders = ['Crackers', 'Sparklers', 'Fountains', 'Rockets', 'Fireworks'];
   const [currentPlaceholderIndex, setCurrentPlaceholderIndex] = useState(0);
   const [isShaking, setShaking] = useState(true);
-  
+  const [ accessToken, setAccessToken ] = useState(null);
+
   const dispatch = useDispatch();
   const auth = useSelector(state => state.auth.auth);
   const isMobile = useSelector(state => state.device.isMobile);
@@ -46,32 +47,29 @@ export function Navbar() {
     if(user==null){
       const accessToken = cookies.get('accessToken');
       const refreshToken = cookies.get('refreshToken');
-
+      if(accessToken) setAccessToken(accessToken);
       console.log(accessToken, refreshToken);
 
-      if (accessToken) 
+      if (accessToken && sessionStorage.getItem("accessToken") === null)
         sessionStorage.setItem("accessToken", accessToken);
-      if (refreshToken) 
+      if (refreshToken && localStorage.getItem("refreshToken") === null)
         localStorage.setItem("refreshToken", refreshToken);
-      axios.get("/auth/me")
-      .then((res) => {
-        dispatch(SetUser(res.data.user));
-      }).catch((err) => {
-        console.log(err);
-      })
-  }
+    }
+  },[])
 
+  useEffect(() => {
+    const accessToken = sessionStorage.getItem("accessToken");
+    if(accessToken) setAccessToken(accessToken);
   },[])
 
   useEffect(() => {
     if(user==null){
       axios.get("/auth/me")
       .then((res) => {
-        console.log(res.data.user);
         dispatch(SetUser(res.data.user));
       })
     }
-  },[auth])
+  },[auth, accessToken])
 
   const handleSignOut = () => {
     axios.post("/auth/logout")
@@ -156,11 +154,11 @@ export function Navbar() {
               </Button>}
               <Menu>
                 <MenuHandler>
-                  {user==null ? <IconButton variant="outlined" color='blue-gray' className='rounded-full mr-4 md:mr-0' ><FcBusinessman className='w-8 h-8 cursor-pointer' /></IconButton> : <Avatar
-                    variant="circular"
+                  {user==null ? <IconButton variant="outlined" color='blue-gray' className='rounded-full mr-4 md:mr-0' ><FcBusinessman className='w-8 h-8 cursor-pointer' /></IconButton> : 
+                  <Avatar
                     alt="User Profile"
                     className="cursor-pointer"
-                    src={user ? user.profilePictureUrl : "https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"}
+                    src={user ? `${user.profilePictureUrl}` : "https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"}
                   />}
                 </MenuHandler>
                 <MenuList>
@@ -216,6 +214,9 @@ export function Navbar() {
           <Input label={"Search "+placeholders[currentPlaceholderIndex]+"..."} className='bg-white' color='blue-gray' size='lg' icon={<FcSearch className='w-6 h-6' />} />
       </div>}
       {auth!=null && <Authenticator />}
+      <div className='w-full h-full flex justify-center items-center mt-2'>
+        <span className="border border-b-0 border-gray-500 w-full"></span>
+      </div>
     </>
   )
 }
