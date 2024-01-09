@@ -12,7 +12,7 @@ import {
    
 export function Advertise() {
   return (
-    <Card className="max-w-[24rem] overflow-hidden sticky top-10">
+    <Card className="w-[20%] hidden md:block overflow-hidden sticky top-10">
         <CardHeader
           floated={false}
           shadow={false}
