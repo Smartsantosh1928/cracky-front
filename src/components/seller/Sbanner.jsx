@@ -159,7 +159,7 @@ export function SBanner() {
                     className='bg-[#ecf4fb] rounded-[50px] ml-5 overflow-x-visible'
                 >
                 <div className="w-full flex justify-center gap-10 p-10">
-                    <div className=" w-[13%]">
+                    <div className="relative w-[14%]">
                         <img src="https://docs.material-tailwind.com/img/team-3.jpg" alt="profile-picture" className='rounded-full' />
                     </div>
                     <div className="w-[78%] flex flex-col justify-center gap-3 items-start">
