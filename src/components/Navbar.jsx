@@ -50,9 +50,9 @@ export function Navbar() {
       if(accessToken) setAccessToken(accessToken);
       console.log(accessToken, refreshToken);
 
-      if (accessToken && sessionStorage.getItem("accessToken") === null)
+      if (accessToken)
         sessionStorage.setItem("accessToken", accessToken);
-      if (refreshToken && localStorage.getItem("refreshToken") === null)
+      if (refreshToken)
         localStorage.setItem("refreshToken", refreshToken);
     }
   },[])
