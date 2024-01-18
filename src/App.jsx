@@ -46,6 +46,7 @@ function App() {
     <>
       <Routes>
         <Route path="/user/*" element={<Dashboard />} />
+        <Route path="/shop/:shop_id/*" element={<Dashboard />} />
         <Route path="/" element={<Navigate to="/user" replace />} />
       </Routes>
     </>
