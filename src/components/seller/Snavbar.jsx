@@ -15,6 +15,7 @@ import { SetUser, RemoveUser } from "../../store/UserSlice";
 import React from "react";
 import { FaCaretRight } from "react-icons/fa";
 import Menus from './menus';
+import { Link } from 'react-router-dom';
  
 const menuItems = [
   {
@@ -67,7 +68,7 @@ export function SNavbar() {
       </div>
       <div className='flex justify-center items-center '>
         <Typography className='md:p-8  font-primary hover:'>Login </Typography>
-        <Button className='bg-yellow-700 lowercase text-black  p-8 md:text-xl font-normal font-secondary'>Start Selling </Button>
+        <Link to={'register'}><Button className='bg-yellow-700 lowercase text-black  p-8 md:text-xl font-normal font-secondary'>Start Selling </Button></Link>
       </div>
      </nav>
   )
