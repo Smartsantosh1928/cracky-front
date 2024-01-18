@@ -23,14 +23,14 @@ export function Createaccount(){
                 <div className="w-[50%] h-52 border border-gray-400 rounded-2xl mt-5 p-8">
                     <Typography className="text-lg font-semibold">Don’t have a GSTIN?</Typography>
                     <Typography className="font-normal text-gray-600 mt-2">Follow the steps below to generate for your online business.</Typography>
-                    <div className="flex gap-16">
+                    <div className="flex gap-10">
                         <div className="flex">
                             <VscAccount  className="text-blue-500 h-20 w-12"/>
-                            <Typography className="px-2 mt-5 w-40 h-12">Register / Login to www.gst.gov.in</Typography>
+                            <Typography className="px-1 mt-5 w-40 h-12">Register / Login to www.gst.gov.in</Typography>
                         </div>
                         <div className="flex">
                             <IoDocumentTextOutline  className="text-blue-500 h-20 w-12"/>
-                            <Typography className="px-2 mt-5 w-52 h-12 ">Fill in the GST Enrollment Application Form</Typography>
+                            <Typography className="px-1 mt-5 w-52 h-12 ">Fill in the GST Enrollment Application Form</Typography>
                         </div>
                         <div className="flex">
                             <IoDocumentsSharp  className="text-blue-500 h-20 w-12"/>
@@ -69,8 +69,15 @@ export function Createaccount(){
                         <Link>sell online</Link>
                     </div>
                 </Card>
-
+            </div>
+            <div className="w-[50%] h-96 mt-10 bg-blue-100 p-6">
+            <div className=" w-[50%] flex ">
+                    <Typography className="text-3xl">List Products</Typography>
                 </div>
+                <div className="w-10 flex h-1.5 bg-blue-500 rounded-full mt-4">
+                </div>
+                <Typography className="pt-5 w-[50%]">What is a listing? A listing refers to the process of registering your product on the Flipkart platform, making it visible to customers, and enabling them to view and purchase your product. It involves creating a detailed product page that includes essential information such as product title, description, images, pricing, and other relevant details. A well-crafted listing helps attract potential customers and facilitates the sale of your product on Flipkart.</Typography>
+            </div>
         </div>
     );
 }
