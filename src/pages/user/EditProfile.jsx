@@ -20,7 +20,7 @@ import {
 } from "@material-tailwind/react";
 import Select from 'react-select'
 import axios from 'axios';
-import { Advertise } from '../../components';
+import { Advertise, FileUpload } from '../../components';
 import { CiEdit,CiCircleCheck  } from "react-icons/ci";
 import { CgProfile } from "react-icons/cg";
 import { FcMultipleSmartphones } from "react-icons/fc";
@@ -38,6 +38,11 @@ export function EditProfile() {
   const [selectedArea, setSelectedArea] = useState('');
   const [selectedPincode, setSelectedPincode] = useState('');
   const [ data, setData ] = useState([]);
+  const [ dialogOpen, setDialogOpen ] = useState(false);
+
+  const handleDialogOpen = () => { 
+    setDialogOpen(!dialogOpen);
+  };
 
   const handleStateChange = (event) => {
     console.log(event.value);
@@ -113,7 +118,7 @@ export function EditProfile() {
       <Card className="md:w-[20%] w-[80%]">
         <div className='flex justify-center items-center flex-col gap-5 mt-5 w-full h-full'>
           <div className='flex flex-col  justify-center items-center'>
-            <Typography variant="h3" color="blue-gray" className="mb-2 font-secondary">
+            <Typography color="blue-gray" className="text-3xl mb-2 font-secondary">
               Natalie Paisley
             </Typography>
             <Typography color="blue-gray" className="font-medium font-secondary" textGradient>
@@ -127,10 +132,10 @@ export function EditProfile() {
               src="https://docs.material-tailwind.com/img/face-2.jpg"
               className="border border-blue-500 shadow-xl shadow-blue-900/20 ring-4 ring-blue-500/30"
             />
-            <CiEdit className="w-7 h-7 p-1 cursor-pointer rounded-full absolute top-0 bg-blue-gray-500 text-white right-1" />
+            <CiEdit className="w-7 h-7 p-1 cursor-pointer rounded-full absolute top-0 bg-blue-gray-500 text-white right-1" onClick={handleDialogOpen} />
             </div>
         </div>
-        <CardFooter className="flex justify-center gap-1 pt-2">
+        <CardFooter className="flex justify-center mt-5 gap-1 pt-2">
           <Typography variant='small' color='gray' >
             Customer Sincle
           </Typography>
@@ -139,19 +144,22 @@ export function EditProfile() {
           </Typography>
         </CardFooter>
       </Card>
-      <Card className="w-[80%] md:w-[50%]">
+      <Card className="w-[80%] md:w-[50%] h-full">
         <div className='flex justify-between items-center w-full p-5'>
-          <Typography variant="h3" color="black" className="text-black/70 font-primary tracking-wide">
+          <Typography color="black" className="text-xl md:text-2xl text-black/70 font-primary tracking-wide">
             Edit Profile
           </Typography>
           <div className='flex justify-evenly gap-3 items-center'>
             <Button className='px-3 py-1 flex justify-center items-center text-xl gap-1 bg-blue-gray-200' >
-              <FaSave className='w-5 h-5' />
-              Cancel
+              <span className='text-sm'>
+                Cancel
+              </span>
             </Button>
             <Button color="blue" className='px-3 py-1 flex justify-center items-center text-xl gap-1' >
               <FaSave className='w-5 h-5' />
-              Save
+              <span className='text-sm'>
+                Save
+              </span>
             </Button>
           </div>
         </div>
@@ -173,62 +181,46 @@ export function EditProfile() {
             </TabsHeader>
             <TabsBody>
                 <TabPanel key="userInfo" value="userInfo">
-                    <div className='grid grid-cols-1 gap-5' >
-                      <div className='flex justify-around'>
+                    <div className='grid grid-cols-1 md:grid-cols-2 mt-6'>
+                      <div className='md:flex flex-col gap-7 hidden'>
                         <Typography color="blue-gray" variant='lead' >Name</Typography>
-                        <div className='w-[60%]'>
-                          <Input color="blue"label="Name" />
-                        </div>
-                      </div>
-                      <div className='flex justify-around'>
                         <Typography color="blue-gray" variant='lead' >Email</Typography>
-                        <div className='w-[60%]'>
-                          <Input color="blue" label="Email" 
-                            icon={true ? 
-                              <abbr title='Verified'><CiCircleCheck className='w-6 h-6 text-green-800' /></abbr>
-                              : 
-                              <abbr title='Not Verified'><FaRegCircleXmark className='w-6 h-6 text-red-800'/></abbr>
-                            }
-                            />
-                        </div>
-                      </div>
-                      <div className='flex justify-around'>
-                        <Typography color="blue-gray" variant='lead' >Phone</Typography>
-                        <div className='w-[60%]'>
-                          <Input color="blue" label="Phone" />
-                        </div>
-                      </div>
-                      <div className='flex justify-around'>
+                        <Typography color="blue-gray" variant='lead' >Phone Number</Typography>
                         <Typography color="blue-gray" variant='lead' >Gender</Typography>
-                        <div className='w-[60%]'>
+                        <Typography color="blue-gray" variant='lead' >Email Offers</Typography>
+                      </div>
+                      <div className='flex flex-col gap-5 md:-ml-32'>
+                        <Input color="blue" label="Name" />
+                        <Input color="blue" label="Email" />
+                        <Input color="blue" label="Phone" />
+                        <div className='ml-0 md:-ml-3'>
+                          <Typography color="blue-gray" variant='lead' className='block md:hidden' >Gender</Typography>
                           <Checkbox color="blue" label="Male" />
                           <Checkbox color="blue" label="Female" />
                           <Checkbox color="blue" label="Others" />
                         </div>
-                      </div>
-                      <div className='flex justify-around'>
-                        <Typography color="blue-gray" variant='lead' >Email Offers</Typography>
-                        <div className='w-[60%] -ml-12'>
+                        <div className='w-[60%] ml-0 md:-ml-3'>
+                          <Typography color="blue-gray" variant='lead' className='block md:hidden' >Email Offers</Typography>
                           <Checkbox icon={<CiCircleCheck className='w-6 h-6'/>} color='green' label="Yes" className='outline-none' />
                           <Checkbox icon={<FaRegCircleXmark className='w-6 h-6'/>} color='red' label="No" />
                         </div>
-                      </div>                     
+                      </div>  
                     </div>
                 </TabPanel>
             </TabsBody>
-            <TabsBody>
+            <TabsBody className=''>
                 <TabPanel key="contactInfo" value="contactInfo">
-                  <div >
+                  <div className='min-h-[520px]'>
                     <Typography color="blue-gray" className='text-2xl md:text-4xl' >Delivery Address 1</Typography>
                     <div className='grid grid-cols-1 md:grid-cols-2 mt-6'>
                       <div className='md:flex flex-col gap-7 hidden'>
                         <Typography color="blue-gray" variant='lead' >Address Line 1</Typography>
                         <Typography color="blue-gray" variant='lead' >Address Line 2</Typography>
                         <Typography color="blue-gray" variant='lead' >State</Typography>
-                        <Typography color="blue-gray" variant='lead' >District</Typography>
-                        <Typography color="blue-gray" variant='lead' >City</Typography>
-                        <Typography color="blue-gray" variant='lead' >Area</Typography>
-                        <Typography color="blue-gray" variant='lead' >Pin Code</Typography>
+                        {selectedState && <Typography color="blue-gray" variant='lead' >District</Typography>}
+                        {selectedDistrict && <Typography color="blue-gray" variant='lead' >City</Typography>}
+                        {selectedCity && <Typography color="blue-gray" variant='lead' >Area</Typography>}
+                        {selectedArea && <Typography color="blue-gray" variant='lead' >Pin Code</Typography>}
                       </div>
                       <div className='flex flex-col gap-5 md:-ml-32'>
                         <Input color="blue" label="Address Line 1" />
@@ -237,67 +229,11 @@ export function EditProfile() {
                         {selectedState && <Select options={Object.keys(data[selectedState]).map(district => ({ value: district, label: district }))} onChange={handleDistrictChange} label="District" />}
                         {selectedDistrict && <Select options={Object.keys(data[selectedState][selectedDistrict]).map(city => ({ value: city, label: city }))} onChange={handleCityChange} label="City" />}
                         {selectedCity && <Select options={data[selectedState][selectedDistrict][selectedCity].map(area => ({ value: area.Area, label: area.Area, pincode: area.Pincode }))} onChange={handleAreaChange} label="Area" />}
-                        {/* <Select
-                          color="blue"
-                          selected={element => {
-                            return selectedState && React.cloneElement(<Option >{selectedState}</Option>, {
-                              className: 'list-none',
-                              value: selectedState,
-                            })
-                          }}
-                          onChange={handleStateChange}
-                          optionListClass="max-h-96"
-                          label="State"
-                        >
-                          {Object.keys(data).map((state) => (
-                            <Option key={state} value={state}>
-                              {state}
-                            </Option>
-                          ))}
-                        </Select>
-                        <Select
-                          color="blue"
-                          value={selectedDistrict}
-                          onChange={handleDistrictChange}
-                          optionListClass="max-h-96"
-                          label="District"
-                        >
-                          {selectedState &&
-                            Object.keys(data[selectedState]).map((district) => (
-                              <Option key={district} value={district}>
-                                {district}
-                              </Option>
-                            ))}
-                        </Select>
-                        <Select
-                          color="blue"
-                          value={selectedCity}
-                          onChange={handleCityChange}
-                          optionListClass="max-h-96"
-                          label="City"
-                        >
-                          {selectedDistrict &&
-                            Object.keys(data[selectedState][selectedDistrict]).map((city) => (
-                              <Option key={city} value={city}>
-                                {city}
-                              </Option>
-                            ))}
-                        </Select>
-                        <Select
-                          color="blue"
-                          value={selectedArea}
-                          onChange={handleAreaChange}
-                          optionListClass="max-h-96"
-                          label="Area"
-                        >
-                          {selectedCity && data[selectedState][selectedDistrict][selectedCity].map((area) => (
-                            <Option key={area.Area} value={area.Area}>
-                              {area.Area}
-                            </Option>
-                          ))}
-                        </Select> */}
-                        <Input color="blue" label="Pin Code" value={selectedPincode} />
+                        {selectedArea && <Input color="blue" label="Pin Code" value={selectedPincode} />}
                       </div>  
+                    </div>
+                    <div className='flex justify-end items-center mt-5'>
+                      <Typography color="blue" variant='small' >At most 5 delivery addess can be added</Typography>
                     </div>
                   </div>
                 </TabPanel>
@@ -306,6 +242,7 @@ export function EditProfile() {
         </CardBody>
       </Card>
       <Advertise />
+      <FileUpload dialogOpen={dialogOpen} handleOpen={handleDialogOpen} multiple={true} />
     </div>
   )
 }
