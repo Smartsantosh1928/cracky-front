@@ -3,7 +3,7 @@ import { Card } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 export function ReceivePayments(){
     return(
-    <div className="w-[50%]">
+    <div className="">
      <Card className="h-92 bg-[#cadbe6] flex">
      <div className="flex">
        <img src="/img/pay.webp" alt="" className="" />  

@@ -2,6 +2,10 @@ import { useState, useEffect } from 'react'
 import {data} from '../../data/seller/content'
 import { BsChevronDoubleRight } from "react-icons/bs";
 import { Link, animateScroll as scroll  } from 'react-scroll';
+import Createaccount from '../../documentation/seller/sellonline/createaccount';
+import ListProducts from '../../documentation/seller/sellonline/ListProducts';
+import StorageShipping from '../../documentation/seller/sellonline/StorageShipping';
+import ReceivePayments from'../../documentation/seller/sellonline/ReceivePayments';
 export function SContent() {
       const submenus = data["sellonline"];
       return (
@@ -11,20 +15,20 @@ export function SContent() {
             <div className='sticky top-14 mt-5 h-[370px] bottom-5 w-1/5 '>
                <div className='flex flex-col'>
                   {submenus.map(({title,href},index)=>{
-                     return ( <Link activeClass='active  ' className='cursor-pointer transition-transform duration-300 text-md' smooth={true} spy={true} offset={-60} to={href}>                      
+                     return ( <Link activeClass='active' className='cursor-pointer font-thin transition-transform duration-300 text-md' smooth={true} spy={true} offset={-60} to={href}>                      
                               <div className=' p-2 font-extralight text-left flex justify-start items-center'>
                                  <BsChevronDoubleRight  className={`hidden`}/>
-                                 <span className='translate-x-5'>{title}</span>
+                                 <span className='translate-x-9'>{title}</span>
                               </div>                
                      </Link> )
                   })}
                </div>
             </div>
-            <div className=' mt-5 w-[60%] border-2  border-black'>
-                  <section id="create"  className='min-h-[600px] bg-red-500'></section>
-                  <section id="list"  className='min-h-[600px] bg-green-500'></section>
-                  <section id="storage"  className='min-h-[600px] bg-red-500'></section>
-                  <section id="receive"  className='min-h-[600px] bg-yellow-500'></section>
+            <div className=' mt-5 w-[60%]'>
+                  <section id="create"  className='min-h-[600px]'><Createaccount /></section>
+                  <section id="list"  className='min-h-[600px]'><ListProducts /></section>
+                  <section id="storage"  className='min-h-[600px]'><StorageShipping /></section>
+                  <section id="receive"  className='min-h-[600px] '><ReceivePayments /></section>
                   <section id="grow"  className='min-h-[600px] bg-red-500'></section>
                   <section id="seller"  className='min-h-[600px] bg-teal-500'></section>   
            </div>
