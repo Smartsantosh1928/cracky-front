@@ -1,15 +1,12 @@
 import React from 'react'
-import {SNavbar,SBanner,SContent} from "../components/seller"
-import {Footer} from '../components'
+import {SBanner,SContent} from "../../components/seller"
 
 export function SellerHome() {
 
   return (
     <div>
-      <SNavbar/>
       <SBanner/>
       <SContent/>
-      <Footer/>
     </div>
   )
 }

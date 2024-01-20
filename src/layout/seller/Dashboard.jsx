@@ -1,9 +1,16 @@
 import React from 'react'
+import { SNavbar } from '../../components/seller'
+import { Routes } from 'react-router-dom'
+import {SellerHome} from '../../pages/seller'
+import { Footer } from '../../components'
 
-export function Dashboard() {
-  return (
-    <div>Dashboard</div>
+export function SDashboard() {
+  return (<>
+    <SNavbar/>
+    <SellerHome/>
+    <Footer/>
+    </>
   )
 }
 
-export default Dashboard
+export default SDashboard

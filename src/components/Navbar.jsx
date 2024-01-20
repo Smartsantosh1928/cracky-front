@@ -21,6 +21,7 @@ import Authenticator from './Authenticator';
 import Cookies from 'universal-cookie';
 import { SetUser, RemoveUser } from "../store/UserSlice";
 import axios from "../utils/axios.config"
+import { Link } from 'react-router-dom';
 
 export function Navbar() {
 
@@ -149,9 +150,9 @@ export function Navbar() {
                 <Typography variant='paragraph' className="cursor-pointer">
                   <FcShop className='w-6 h-6' />
                 </Typography>
-              </Tooltip> : <Button variant="text" color='blue-gray' className='rounded-full justify-center flex items-center gap-3 font-secondary font-bold '>Become a Seller
+              </Tooltip> : <Link to={'/seller'}><Button variant="text" color='blue-gray' className='rounded-full justify-center flex items-center gap-3 font-secondary font-bold '>Become a Seller
                 <FcShop className='w-6 h-6' />
-              </Button>}
+              </Button></Link>}
               <Menu>
                 <MenuHandler>
                   {user==null ? <IconButton variant="outlined" color='blue-gray' className='rounded-full mr-4 md:mr-0' ><FcBusinessman className='w-8 h-8 cursor-pointer' /></IconButton> : 
