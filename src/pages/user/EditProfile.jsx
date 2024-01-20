@@ -19,7 +19,7 @@ import {
   Option,
 } from "@material-tailwind/react";
 import Select from 'react-select'
-import axios from 'axios';
+import axios from "../../utils/axios.config"
 import { Advertise, FileUpload } from '../../components';
 import { CiEdit,CiCircleCheck  } from "react-icons/ci";
 import { CgProfile } from "react-icons/cg";
@@ -27,11 +27,14 @@ import { FcMultipleSmartphones } from "react-icons/fc";
 import { FaSave } from "react-icons/fa";
 import { FaRegCircleXmark } from "react-icons/fa6";
 import AddressData from '../../data/common/AddressData.json';
+import { FcGoogle } from "react-icons/fc";
+import { FaFacebook } from "react-icons/fa";
+import { MdMarkEmailRead } from "react-icons/md";
 
 export function EditProfile() {
 
   const url = import.meta.env.VITE_URL;
-  const [ details, setDetails ] = useState(false);
+  const [ details, setDetails ] = useState({});
   const [selectedState, setSelectedState] = useState('');
   const [selectedDistrict, setSelectedDistrict] = useState('');
   const [selectedCity, setSelectedCity] = useState('');
@@ -39,6 +42,14 @@ export function EditProfile() {
   const [selectedPincode, setSelectedPincode] = useState('');
   const [ data, setData ] = useState([]);
   const [ dialogOpen, setDialogOpen ] = useState(false);
+
+  useEffect(() => {
+      axios.get(`${url}/auth/me`)
+      .then(res => {
+        setDetails(res.data.user);
+      })
+      .catch(err => console.log(err.response))
+  },[])
 
   const handleDialogOpen = () => { 
     setDialogOpen(!dialogOpen);
@@ -64,22 +75,8 @@ export function EditProfile() {
     setSelectedArea(event.value);
     setSelectedPincode(event.pincode);
   }
-
-  const handlePincodeChange = (event) => {
-    setSelectedPincode(event.target.value);
-  }
-
-  console.log(selectedState, selectedDistrict, selectedCity);
   
   useEffect(() => {
-    const statesSet = new Set();
-    // AddressData.forEach(item => {
-    //   if (!statesSet.has(item.State)) {
-    //     statesSet.add(item.State);
-    //   }
-    // });
-    // console.log([...statesSet]);
-
     const transformedData = {};
     
     AddressData.forEach(item => {
@@ -100,16 +97,7 @@ export function EditProfile() {
       transformedData[State][District][City].push({ Pincode, Area: item.Area });
     });
     
-    console.log(Object.keys(transformedData));
     setData(transformedData);
-
-    // axios.get(`${url}/user/`)
-    // .then((res) => {
-    //   console.log(res);
-    //   setDetails(res.data);
-    // })
-    // .catch((err) => {
-    // })
   }, [])
 
 
@@ -129,7 +117,7 @@ export function EditProfile() {
             <Avatar
               size="xxl"
               alt="avatar"
-              src="https://docs.material-tailwind.com/img/face-2.jpg"
+              src={details.profilePictureUrl}
               className="border border-blue-500 shadow-xl shadow-blue-900/20 ring-4 ring-blue-500/30"
             />
             <CiEdit className="w-7 h-7 p-1 cursor-pointer rounded-full absolute top-0 bg-blue-gray-500 text-white right-1" onClick={handleDialogOpen} />
@@ -188,6 +176,7 @@ export function EditProfile() {
                         <Typography color="blue-gray" variant='lead' >Phone Number</Typography>
                         <Typography color="blue-gray" variant='lead' >Gender</Typography>
                         <Typography color="blue-gray" variant='lead' >Email Offers</Typography>
+                        <Typography color="blue-gray" variant='lead' >Connections</Typography>
                       </div>
                       <div className='flex flex-col gap-5 md:-ml-32'>
                         <Input color="blue" label="Name" />
@@ -204,13 +193,22 @@ export function EditProfile() {
                           <Checkbox icon={<CiCircleCheck className='w-6 h-6'/>} color='green' label="Yes" className='outline-none' />
                           <Checkbox icon={<FaRegCircleXmark className='w-6 h-6'/>} color='red' label="No" />
                         </div>
+                        <div className='ml-0 md:-ml-3'>
+                          <Typography color="blue-gray" variant='lead' className='block md:hidden' >Connections</Typography>
+                          <div className='grid grid-cols-3 gap-5'>
+                            <Card className='flex justify-center items-center flex-row gap-3 py-2 md:-mt-3'>
+                              <FcGoogle className='w-6 h-6' />
+                              <Typography color="blue-gray" className='text-xl hidden md:block' >Email</Typography>
+                            </Card>
+                          </div>
+                        </div>
                       </div>  
                     </div>
                 </TabPanel>
             </TabsBody>
-            <TabsBody className=''>
+            <TabsBody className='overflow-auto'>
                 <TabPanel key="contactInfo" value="contactInfo">
-                  <div className='min-h-[520px]'>
+                  {<div className='h-full'>
                     <Typography color="blue-gray" className='text-2xl md:text-4xl' >Delivery Address 1</Typography>
                     <div className='grid grid-cols-1 md:grid-cols-2 mt-6'>
                       <div className='md:flex flex-col gap-7 hidden'>
@@ -235,7 +233,7 @@ export function EditProfile() {
                     <div className='flex justify-end items-center mt-5'>
                       <Typography color="blue" variant='small' >At most 5 delivery addess can be added</Typography>
                     </div>
-                  </div>
+                  </div>}
                 </TabPanel>
             </TabsBody>
           </Tabs>
