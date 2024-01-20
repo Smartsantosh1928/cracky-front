@@ -6,6 +6,8 @@ import Createaccount from '../../documentation/seller/sellonline/createaccount';
 import ListProducts from '../../documentation/seller/sellonline/ListProducts';
 import StorageShipping from '../../documentation/seller/sellonline/StorageShipping';
 import ReceivePayments from'../../documentation/seller/sellonline/ReceivePayments';
+import GrowFaster from '../../documentation/seller/GrowFaster';
+import HelpSupport from '../../documentation/seller/sellonline/HelpSupport';
 export function SContent() {
       const submenus = data["sellonline"];
       return (
@@ -26,11 +28,11 @@ export function SContent() {
             </div>
             <div className=' mt-5 w-[60%]'>
                   <section id="create"  className='min-h-[600px]'><Createaccount /></section>
-                  <section id="list"  className='min-h-[600px]'><ListProducts /></section>
-                  <section id="storage"  className='min-h-[600px]'><StorageShipping /></section>
-                  <section id="receive"  className='min-h-[600px] '><ReceivePayments /></section>
-                  <section id="grow"  className='min-h-[600px] bg-red-500'></section>
-                  <section id="seller"  className='min-h-[600px] bg-teal-500'></section>   
+                  <section id="list"  className='min-h-[400px]'><ListProducts /></section>
+                  <section id="storage"  className='min-h-[400px]'><StorageShipping /></section>
+                  <section id="receive"  className='min-h-[300px] '><ReceivePayments /></section>
+                  <section id="grow"  className='min-h-[400px]'><GrowFaster /></section>
+                  <section id="seller"  className='min-h-[400px]'><HelpSupport /></section>   
            </div>
            </div>
         </section>

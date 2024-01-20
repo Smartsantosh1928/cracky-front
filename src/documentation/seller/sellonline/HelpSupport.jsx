@@ -2,7 +2,7 @@ import { Typography } from "@material-tailwind/react";
 
 export function HelpSupport(){
     return(
-        <div className="w-[50%] bg-white ">    
+        <div className=" bg-[#eaf7ff] w-[80%]">    
             <div>
                     <div className=" w-[50%] flex ">
                         <Typography className="text-3xl">Help & Support</Typography>

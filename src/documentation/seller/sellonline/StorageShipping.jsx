@@ -2,8 +2,8 @@ import { Typography } from "@material-tailwind/react";
 export function StorageShipping(){
     return(
        <>
-       <div className="p-5">
-                <div className=" w-[50%] flex bg ">
+       <div className="p-5 w-[80%]">
+                <div className="flex">
                     <Typography className="text-3xl">Storage & Shipping</Typography>
                 </div>
                 <div className="w-10 flex h-1.5 bg-blue-500 rounded-full mt-4">
@@ -20,6 +20,13 @@ export function StorageShipping(){
                         Real-time tracking of your product.
                         Customer returns support.
                         Logistics support from the community warehouse is available.</Typography>
+                        <Typography className="text-2xl font-semibold pt-5">Assisted Shipping by Our Logistics Partners (ASLP):</Typography>
+                      <Typography> Enjoy a worry-free experience as we handle storage, packing, shipping, and delivery for your products.
+                        Our team efficiently manages the entire process, from picking up products at your location to expertly packing and shipping to customers.
+                        Benefit from a faster delivery process, seamless order processing, and an end-to-end solution for customer returns.
+                        Take advantage of warehouse space, quality selection recommendations, and rigorous quality checks.
+                        Trust in our commitment to using high-quality packaging materials</Typography> 
+                        
                 </div>
        </div>
        </>
