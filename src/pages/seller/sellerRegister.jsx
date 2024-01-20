@@ -3,7 +3,7 @@ import React from "react";
 import { Stepper, Step, Button } from "@material-tailwind/react";
 import { CiCircleCheck   } from "react-icons/ci";
 import {Advertise} from "../../components"
-
+import {Step1} from "../../components/seller"
 export function SellerRegister() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [isLastStep, setIsLastStep] = React.useState(false);
@@ -16,7 +16,6 @@ export function SellerRegister() {
     <div className='w-full bg-white min-h-screen min-w-screen flex md:p-2'>
        <nav className=' w-[15%]'>
           <img className='w-24 h-24' src={logo} alt="logo" />
-          <div className=''></div>
        </nav>
        <div className=' w-[70%] md:px-32 md:pt-9'>
           <div className="w-[75%] mr-auto">
@@ -53,12 +52,12 @@ export function SellerRegister() {
             </Step>
           </Stepper>
         <div className=" ">
-          <div></div>
+          <div><Step1/></div>
           <div></div>
           <div></div>
         </div>
       </div>
-      </div>        
+      </div>    
         <Advertise/>
     </div>
   )
