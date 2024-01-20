@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ToggleDevice } from "./store/DeviceSlice";
 import { useGoogleOneTapLogin } from 'react-google-one-tap-login';
 import { Dashboard } from "./layout/user/Dashboard"
+import ListProducts from "./documentation/seller/sellonline/HelpSupport";
 import { SDashboard } from "./layout/seller/Dashboard"
 import { SellerRegister } from "./pages/seller";
 function App() {
@@ -52,6 +53,7 @@ function App() {
         <Route path="/shop/:shop_id/*" element={<Dashboard />} />
         <Route path="/" element={<Navigate to="/user" replace />} />
       </Routes>
+   
     </>
   )
 }
