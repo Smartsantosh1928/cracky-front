@@ -5,15 +5,55 @@ import {Button,Menu,
     Avatar,
     Typography,
   } from "@material-tailwind/react"
-  import React from "react";
+  import React,{useState} from "react";
 import { CgHome } from "react-icons/cg";
-    
-  export function Step1() {
+import OtpInput from 'react-otp-input';
+
+export function Step1() {
+  const [MobOtp, setMobOtp] = useState('');
+  const [mailOtp, setMailOtp] = useState('');
+      React.useEffect(()=>{
+        console.log(MobOtp,mailOtp);
+      },[MobOtp,mailOtp])
        return (
        <section className="md:mt-9">
         <div className="flex flex-col gap-5 justify-center items-center py-6 ">
-            <Input size="lg"  variant="outlined" label="Enter Mobile Number*" icon={<CgHome/>}/>
-            <Input size="lg" variant="outlined" label="EmailID*"/>
+            <span className="relative w-full"><Input size="lg"  variant="outlined" label="Enter Mobile Number*" /><span className="absolute top-3 right-3 text-blue-600 text-sm">Send OTP</span></span>
+            <div className=" w-full flex flex-col gap-2"> 
+              <Typography className="font-secondary text-xs text-gray-600">* Enter OTP sent to your mobile number</Typography>
+              <OtpInput
+                containerStyle={"w-96 flex justify-start items-start gap-1 h-10"}
+                inputStyle={"border-[1px] border-gray-500  text-2xl   rounded-md text-gray-800"}
+                className=""
+                placeholder="000000"
+                onPaste={(otp)=>setMobOtp(otp)}
+                value={MobOtp}
+                onChange={(otp)=>setMobOtp(otp)}
+                inputType="text"
+                numInputs={6}
+                renderSeparator={<span>:</span>}
+                renderInput={(props) => <input {...props} />}
+              />
+              <Typography className="font-secondary text-xs text-gray-600">Didn’t receive OTP? <span className="text-blue-500 cursor-pointer"> Resend OTP</span></Typography>
+            </div>
+            <span className="relative w-full"><Input size="lg"  variant="outlined" label="Enter EmailID*" /><span className="absolute top-3 right-3 text-blue-600 text-sm">Send OTP</span></span>
+            <div className=" w-full flex flex-col gap-2">
+              <Typography className="font-secondary text-xs text-gray-600">* Enter OTP sent to your MailID</Typography>
+              <OtpInput
+                containerStyle={"w-96 flex justify-start items-start gap-1 h-10"}
+                inputStyle={"border-[1px] border-gray-500  text-2xl   rounded-md text-gray-800"}
+                className=""
+                placeholder="000000"
+                onPaste={(otp)=>setMailOtp(otp)}
+                value={mailOtp}
+                onChange={(otp)=>setMailOtp(otp)}
+                inputType="text"
+                numInputs={6}
+                renderSeparator={<span>:</span>}
+                renderInput={(props) => <input {...props} />}
+              />
+              <Typography className="font-secondary text-xs text-gray-600">Didn’t receive OTP? <span className="text-blue-500 cursor-pointer"> Resend OTP</span></Typography>
+            </div>
             <Input size="lg" variant="outlined" label="EnterGSTIN*"/>
         </div>
         <div className="">
