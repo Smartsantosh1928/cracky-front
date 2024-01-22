@@ -30,18 +30,15 @@ import AddressData from '../../data/common/AddressData.json';
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import { MdMarkEmailRead } from "react-icons/md";
+import { IoIosAddCircleOutline } from "react-icons/io";
 
 export function EditProfile() {
 
   const url = import.meta.env.VITE_URL;
   const [ details, setDetails ] = useState({});
-  const [selectedState, setSelectedState] = useState('');
-  const [selectedDistrict, setSelectedDistrict] = useState('');
-  const [selectedCity, setSelectedCity] = useState('');
-  const [selectedArea, setSelectedArea] = useState('');
-  const [selectedPincode, setSelectedPincode] = useState('');
-  const [ data, setData ] = useState([]);
+  const [ addressData, setAddressData ] = useState([]);
   const [ dialogOpen, setDialogOpen ] = useState(false);
+  const [ address, setAddress ] = useState([]);
 
   useEffect(() => {
       axios.get(`${url}/auth/me`)
@@ -51,29 +48,44 @@ export function EditProfile() {
       .catch(err => console.log(err.response))
   },[])
 
+  useEffect(() => {
+    console.log(address);
+  },[address])
+
+  const addAddress = () => {
+    setAddress([...address, {
+      addressLine1: '',
+      addressLine2: '',
+      state: '',
+      district: '',
+      city: '',
+      area: '',
+      pincode: ''
+    }]);
+  }
+
   const handleDialogOpen = () => { 
     setDialogOpen(!dialogOpen);
   };
 
-  const handleStateChange = (event) => {
-    console.log(event.value);
-    setSelectedState(event.value);
-    setSelectedDistrict('');
-    setSelectedCity('');
-  };
+  const handleDataChange = () => {
+    
+  }
 
-  const handleDistrictChange = (event) => {
-    setSelectedDistrict(event.value);
-    setSelectedCity('');
-  };
-
-  const handleCityChange = (event) => {
-    setSelectedCity(event.value);
-  };
-
-  const handleAreaChange = (event) => {
-    setSelectedArea(event.value);
-    setSelectedPincode(event.pincode);
+  const handleAddressChange = (e,index) => {
+    if(e.pincode){
+    }
+    if(e.value){
+      const { value, label } = e;
+      const list = [...address];
+      list[index][value] = label;
+      setAddress(list);
+      return;
+    }
+    const { name, value } = e.target;
+    const list = [...address];
+    list[index][name] = value;
+    setAddress(list);
   }
   
   useEffect(() => {
@@ -97,7 +109,7 @@ export function EditProfile() {
       transformedData[State][District][City].push({ Pincode, Area: item.Area });
     });
     
-    setData(transformedData);
+    setAddressData(transformedData);
   }, [])
 
 
@@ -208,32 +220,38 @@ export function EditProfile() {
             </TabsBody>
             <TabsBody className='overflow-auto'>
                 <TabPanel key="contactInfo" value="contactInfo">
-                  {<div className='h-full'>
+                  {address && address.map((e,key) => <div className='h-full'>
                     <Typography color="blue-gray" className='text-2xl md:text-4xl' >Delivery Address 1</Typography>
                     <div className='grid grid-cols-1 md:grid-cols-2 mt-6'>
                       <div className='md:flex flex-col gap-7 hidden'>
                         <Typography color="blue-gray" variant='lead' >Address Line 1</Typography>
                         <Typography color="blue-gray" variant='lead' >Address Line 2</Typography>
                         <Typography color="blue-gray" variant='lead' >State</Typography>
-                        {selectedState && <Typography color="blue-gray" variant='lead' >District</Typography>}
-                        {selectedDistrict && <Typography color="blue-gray" variant='lead' >City</Typography>}
-                        {selectedCity && <Typography color="blue-gray" variant='lead' >Area</Typography>}
-                        {selectedArea && <Typography color="blue-gray" variant='lead' >Pin Code</Typography>}
+                        {e.state && <Typography color="blue-gray" variant='lead' >District</Typography>}
+                        {e.district && <Typography color="blue-gray" variant='lead' >City</Typography>}
+                        {e.city && <Typography color="blue-gray" variant='lead' >Area</Typography>}
+                        {e.area && <Typography color="blue-gray" variant='lead' >Pin Code</Typography>}
                       </div>
                       <div className='flex flex-col gap-5 md:-ml-32'>
-                        <Input color="blue" label="Address Line 1" />
-                        <Input color="blue" label="Address Line 2" />
-                        <Select options={Object.keys(data).map(state => ({ value: state, label: state }))} onChange={handleStateChange} label="State" />
-                        {selectedState && <Select options={Object.keys(data[selectedState]).map(district => ({ value: district, label: district }))} onChange={handleDistrictChange} label="District" />}
-                        {selectedDistrict && <Select options={Object.keys(data[selectedState][selectedDistrict]).map(city => ({ value: city, label: city }))} onChange={handleCityChange} label="City" />}
-                        {selectedCity && <Select options={data[selectedState][selectedDistrict][selectedCity].map(area => ({ value: area.Area, label: area.Area, pincode: area.Pincode }))} onChange={handleAreaChange} label="Area" />}
-                        {selectedArea && <Input color="blue" label="Pin Code" value={selectedPincode} />}
+                        <Input color="blue" label="Address Line 1" name='addressLine1' onChange={(e) => handleAddressChange(e,key)} />
+                        <Input color="blue" label="Address Line 2" name='addressLine2' onChange={(e) => handleAddressChange(e,key)} />
+                        <Select name='state' options={Object.keys(addressData).map(state => ({ value: "state", label: state }))} onChange={(e) => handleAddressChange(e,key)} label="State" />
+                        {e.state && <Select name='district' options={Object.keys(addressData[e.state]).map(district => ({ value: "district", label: district }))} onChange={(e) => handleAddressChange(e,key)} label="District" />}
+                        {e.district && <Select name='city' options={Object.keys(addressData[e.state][e.district]).map(city => ({ value: "city", label: city }))} onChange={(e) => handleAddressChange(e,key)} label="City" />}
+                        {e.city && <Select name='area' options={addressData[e.state][e.district][e.city].map(area => ({ value: "area", label: area.Area, "pincode": area.Pincode }))} onChange={(e) => handleAddressChange(e,key)} label="Area" />}
+                        {e.area && <Input color="blue" disabled label="Pin Code" value={selectedPincode} />}
                       </div>  
                     </div>
-                    <div className='flex justify-end items-center mt-5'>
-                      <Typography color="blue" variant='small' >At most 5 delivery addess can be added</Typography>
-                    </div>
-                  </div>}
+                  </div>)}
+                  <div className='flex justify-center items-end flex-col mt-5'>
+                    <Button color="blue" onClick={addAddress} className='px-3 py-1 flex justify-center items-center text-xl gap-1' >
+                      <IoIosAddCircleOutline className='w-5 h-5' />
+                      <span className='text-sm'>
+                        Add new
+                      </span>
+                    </Button>
+                    <Typography color="blue" variant='small' >At most 5 delivery addess can be added</Typography>
+                  </div>
                 </TabPanel>
             </TabsBody>
           </Tabs>
