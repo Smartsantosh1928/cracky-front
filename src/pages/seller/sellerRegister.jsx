@@ -3,14 +3,14 @@ import React from "react";
 import { Stepper, Step, Button } from "@material-tailwind/react";
 import { CiCircleCheck   } from "react-icons/ci";
 import {Advertise} from "../../components"
-import {Step1} from "../../components/seller"
+import {Step1,Step2,Step3} from "../../components/seller"
 export function SellerRegister() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [isLastStep, setIsLastStep] = React.useState(false);
   const [isFirstStep, setIsFirstStep] = React.useState(false);
 
-  const handleNext = () => !isLastStep && setActiveStep((cur) => cur + 1);
-  const handlePrev = () => !isFirstStep && setActiveStep((cur) => cur - 1);
+  const handleNext = (num) => !isLastStep && setActiveStep(num);
+  const handlePrev = (num) => !isFirstStep && setActiveStep(num);
 
   return (
     <div className='w-full bg-white min-h-screen min-w-screen flex md:p-2'>
@@ -51,11 +51,21 @@ export function SellerRegister() {
               <div className="absolute -top-1.5 -right-24 text-black text-sm uppercase">ONBOARDING</div>
             </Step>
           </Stepper>
-        <div className=" ">
-          <div><Step1/></div>
-          <div></div>
-          <div></div>
-        </div>
+          <div className=" ">
+          {(() => {
+            switch (activeStep) {
+              case 0:
+                return <Step1 handleNext={handleNext} handlePrev={handlePrev} />;
+              case 1:
+                return <Step2 handleNext={handleNext} handlePrev={handlePrev} />;
+              case 2:
+                return <Step3 handleNext={handleNext} handlePrev={handlePrev} />;
+              default:
+                return null; // or some default component
+            }
+          })()}
+</div>
+
       </div>
       </div>    
         <Advertise/>
