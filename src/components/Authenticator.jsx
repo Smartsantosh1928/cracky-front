@@ -25,7 +25,6 @@ import { PiEyeSlashThin, PiEyeThin } from "react-icons/pi";
 import { BsShieldFillExclamation } from "react-icons/bs";
 import axios from "axios"
 import { ToastContainer, toast } from 'react-toastify';
-import "react-toastify/dist/ReactToastify.css";
 
 export function Authenticator() {
 
