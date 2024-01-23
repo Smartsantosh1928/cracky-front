@@ -50,9 +50,9 @@ export function EditProfile() {
     setAddress(details.address)
   },[details])
 
-  useEffect(() => {
-    console.log(details);
-  },[details])
+  // useEffect(() => {
+  //   console.log(details);
+  // },[details])
 
   const addAddress = () => {
     if(address.length >= 5) {
@@ -79,6 +79,20 @@ export function EditProfile() {
   const handleDialogOpen = () => { 
     setDialogOpen(!dialogOpen);
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const data = details;
+    data.address = address;
+    setDetails(data);
+    console.log(data);
+    // axios.put(`${url}/user/update`,data)
+    // .then(res => {
+    //   toast.success('Profile updated successfully');
+    // }).catch(err => {
+    //   toast.error('Something went wrong. Please try again later');
+    // })
+  }
 
   const handleDetailsChange = (e) => {
     const { name, value } = e.target;
@@ -199,7 +213,7 @@ export function EditProfile() {
                 Cancel
               </span>
             </Button>
-            <Button color="blue" className='px-3 py-1 flex justify-center items-center text-xl gap-1' >
+            <Button color="blue" onClick={handleSubmit} className='px-3 py-1 flex justify-center items-center text-xl gap-1' >
               <FaSave className='w-5 h-5' />
               <span className='text-sm'>
                 Save
