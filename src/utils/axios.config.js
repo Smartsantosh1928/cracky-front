@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const instance = axios.create({
   baseURL: import.meta.env.VITE_URL, 
@@ -32,8 +33,22 @@ instance.interceptors.response.use(
         try {
           const res = await axios.post(`${import.meta.env.VITE_URL}/auth/getAccessToken`, { refreshToken });
           if (res.status === 200) {
+            console.log("Access token refreshed");
             sessionStorage.setItem('accessToken', res.data.accessToken);
             return instance(originalRequest);
+          }
+          else{
+            console.log("Session expired");
+            Swal.fire({
+              title: 'Session expired',
+              text: 'Please login again',
+              icon: 'warning',
+              confirmButtonText: 'OK'
+            }).then(() => {
+              sessionStorage.removeItem('accessToken');
+              localStorage.removeItem('refreshToken');
+              window.location.href = '/';
+            })
           }
         } catch (refreshError) {
           // Handle refresh token error, if needed

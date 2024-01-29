@@ -140,7 +140,7 @@ export function Navbar() {
               : <Button variant="outlined" color='blue-gray' className='rounded-full flex justify-center items-center gap-3 py-2 font-secondary font-bold '>cart
                 <BsCartCheck className='w-6 h-6' />
               </Button>}
-              {isMobile ? <Tooltip
+              {isMobile ? <Link to={'/seller'}><Tooltip
                 content="Become a Seller"
                 animate={{
                   mount: { scale: 1, y: 0 },
@@ -150,7 +150,7 @@ export function Navbar() {
                 <Typography variant='paragraph' className="cursor-pointer">
                   <FcShop className='w-6 h-6' />
                 </Typography>
-              </Tooltip> : <Link to={'/seller'}><Button variant="text" color='blue-gray' className='rounded-full justify-center flex items-center gap-3 font-secondary font-bold '>Become a Seller
+              </Tooltip></Link> : <Link to={'/seller'}><Button variant="text" color='blue-gray' className='rounded-full justify-center flex items-center gap-3 font-secondary font-bold '>Become a Seller
                 <FcShop className='w-6 h-6' />
               </Button></Link>}
               <Menu>
