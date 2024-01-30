@@ -55,7 +55,6 @@ function App() {
         <Route path="/shop/:shop_id/*" element={<Dashboard />} />
         <Route path="/" element={<Navigate to="/user" replace />} />
       </Routes>
-   
     </>
   )
 }
