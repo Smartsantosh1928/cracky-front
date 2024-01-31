@@ -6,7 +6,7 @@ export function StorageShipping(){
                 <div className="flex">
                     <Typography className="text-3xl font-secondary font-semibold">Storage & Shipping</Typography>
                 </div>
-                <div className="w-10 flex h-1.5 bg-blue-500 rounded-full mt-4">
+                <div className="w-10 flex h-1.5 bg-red-500 rounded-full mt-4">
                 </div>
                 <div>
                     <Typography className="pt-2 font-secondary">Congratulations on receiving your first order! When it comes to shipping your products to customers, Flipkart understands the importance of fast and reliable delivery in secure packaging.</Typography>

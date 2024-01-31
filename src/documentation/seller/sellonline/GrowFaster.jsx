@@ -3,7 +3,8 @@ import { IoCheckmark } from "react-icons/io5";
 export function GrowFaster(){
     return(
        <div className="w-full grid p-5">
-                <Typography className="text-2xl font-secondary font-semibold">Ignite Your Growth</Typography>
+                <Typography className="text-3xl font-secondary font-semibold">Ignite Your Growth</Typography>
+                <div className="w-10 flex h-1.5 bg-red-500 rounded-full mt-4"></div>
             <div className="flex gap-4 pt-5">
                 <IoCheckmark className="h-6 w-6 text-blue-500 "/>  
                 <Typography className="font-secondary"> Leverage our Price Recommendation Tool to set the perfect pricing strategy for your diverse range of crackers.</Typography>
