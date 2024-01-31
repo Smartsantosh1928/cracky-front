@@ -10,13 +10,9 @@ import OtpInput from 'react-otp-input';
 import { FaArrowRight } from "react-icons/fa6";
 
 export function Step3({handleNext, handlePrev}) {
-  return <section>
-    <div className="w-full">
-      <div>
-
-      </div>
-      <div></div>
-      <div></div>
+  return <section className="">
+    <div className="w-full grid grid-cols-1 col">
+      <div className="min-h-screen w-full bg-deep-orange-800"></div>
     </div>
   </section>  
 }
