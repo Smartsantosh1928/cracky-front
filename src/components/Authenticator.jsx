@@ -136,7 +136,6 @@ export function Authenticator() {
         })
         .then((res) => {
             const data = res.data;
-            console.log(data);
             if (data.success) {
                 sessionStorage.setItem("accessToken", data.accessToken);
                 localStorage.setItem("refreshToken", data.refreshToken);
