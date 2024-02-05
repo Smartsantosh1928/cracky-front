@@ -4,7 +4,6 @@ import ShopNavbar from "./ShopNavbar"
 export function ListingPage(){
     return(
         <div>
-          <ShopNavbar />
           <FilterProducts /> 
         </div>
     )
