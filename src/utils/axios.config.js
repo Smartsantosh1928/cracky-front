@@ -11,7 +11,7 @@ const instance = axios.create({
 instance.interceptors.request.use(
     config => {
         const token = sessionStorage.getItem('accessToken');
-        if (token) {
+        if (token!=null&&token!=''&&token!=undefined) {
             config.headers['Authorization'] = 'Bearer ' + token;
         }
         return config;
@@ -30,11 +30,10 @@ instance.interceptors.response.use(
       if ((error.response.status === 401 || error.response.status === 403) && !originalRequest._retry) {
         originalRequest._retry = true;
         const refreshToken = localStorage.getItem('refreshToken');
-          if(!refreshToken){
+          if(refreshToken!=null){
             axios.post(`${import.meta.env.VITE_URL}/auth/getAccessToken`, { refreshToken })
             .then(res => {
               if(res.status === 403 || res.status === 401){
-                console.log("Session expired");
                 Swal.fire({
                   title: 'Session expired',
                   text: 'Please login again',
