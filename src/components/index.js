@@ -5,4 +5,4 @@ export * from "./Footer";
 export * from "./Advertise";
 export * from "./FileUpload";
 export * from "./ShopNavbar";
-export * from "./FilterProducts";
+export * from "./ListingPage/FilterProducts";
