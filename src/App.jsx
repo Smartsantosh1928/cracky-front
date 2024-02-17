@@ -8,7 +8,7 @@ import { Dashboard } from "./layout/user/Dashboard"
 import { SDashboard } from "./layout/seller/Dashboard"
 import { SellerRegister } from "./pages/seller";
 import "react-toastify/dist/ReactToastify.css";
-import ListingPage from "./components/ListingPAge";
+import ListingPage from "./components/ListingPage/ListingPage";
 
 
 function App() {
