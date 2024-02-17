@@ -8,7 +8,8 @@ import { Card,
 import { MdMarkEmailRead } from "react-icons/md";
 import { CiEdit } from "react-icons/ci";
 import { CgProfile } from "react-icons/cg";
-import axios from 'axios';
+import axios from "../../utils/axios.config"
+import { Link } from 'react-router-dom';
 
 export function Profile() {
     
@@ -19,8 +20,8 @@ export function Profile() {
     useEffect(() => {
         axios.get(`${url}/user/`)
         .then((res) => {
-            console.log(res);
-            setDetails(res.data);
+            console.log(res.data.user);
+            setDetails(res.data.user);
         })
         .catch((err) => {
             console.log(err);
@@ -32,16 +33,27 @@ export function Profile() {
         <Card className="w-[60%] h-full" >
             <CardBody className='w-full h-full' >
                 <div className='flex justify-between items-center'>
-                    <Typography variant='h3' >Personal Information</Typography>
-                    <Button color='blue' variant='gradient' className='flex justify-center items-center gap-1' > <CiEdit className='w-6 h-6' /> Edit Profile</Button>
+                    <Typography className='font-secondary text-4xl' >Personal Information</Typography>
+                    <Link to={"edit"}>
+                    <Button color='blue' variant='gradient' className='flex justify-center items-center gap-1 font-secondary' > <CiEdit className='w-6 h-6' /> Edit Profile</Button>
+                    </Link>
                 </div>
                 <div className='w-full h-full flex flex-col gap-5 mt-6'>
-                    {details.map(e => {
-                        <div className='flex items-center gap-2'>
-                            {e.icon}
-                            <Typography variant='lead' >{e.name}</Typography>
+                    <div className='font-secondary flex'>
+                        <img src={details.profilePictureUrl} alt="profile Picture" className='w-28 h-28 rounded-full' />
+                        <div className='p-4'>
+                            <div className='flex gap-5'>
+                                <Typography className='font-secondary text-2xl' >{details.name}</Typography>
+                                <div>   
+                                    <div className='gradient-card'>Standard</div>
+                                </div>
+                            </div>
+                            <div className='flex gap-2 justify-center items-center'>
+                                <MdMarkEmailRead className={iconClass} />
+                                <Typography className='font-secondary text-lg' >{details.email}</Typography>
+                            </div>
                         </div>
-                    })}
+                    </div>
                 </div>
             </CardBody>
         </Card>

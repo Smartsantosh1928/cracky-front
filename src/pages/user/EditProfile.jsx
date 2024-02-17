@@ -85,13 +85,13 @@ export function EditProfile() {
     const data = details;
     data.address = address;
     setDetails(data);
-    console.log(data);
-    // axios.put(`${url}/user/update`,data)
-    // .then(res => {
-    //   toast.success('Profile updated successfully');
-    // }).catch(err => {
-    //   toast.error('Something went wrong. Please try again later');
-    // })
+    // console.log(data);
+    axios.put(`${url}/user/update`,data)
+    .then(res => {
+      toast.success('Profile updated successfully');
+    }).catch(err => {
+      toast.error('Something went wrong. Please try again later');
+    })
   }
 
   const handleDetailsChange = (e) => {

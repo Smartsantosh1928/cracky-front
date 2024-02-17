@@ -46,7 +46,7 @@ export function Navbar() {
   }
 
   useEffect(() => {
-    console.log(cookies.get('accessToken'), cookies.get('refreshToken'));
+    // console.log(cookies.get('accessToken'), cookies.get('refreshToken'));
     if(user==null){
       const accessToken = cookies.get('accessToken');
       const refreshToken = cookies.get('refreshToken');
@@ -177,10 +177,12 @@ export function Navbar() {
                 </MenuHandler>
                 <MenuList>
                   <MenuItem className="flex items-center gap-2">
-                    <CgProfile className='w-5 h-5' />          
-                    <Typography variant="small" className="font-medium">
-                      My Profile
-                    </Typography>
+                    <Link to={"profile"} className="flex items-center gap-2">
+                      <CgProfile className='w-5 h-5' />          
+                      <Typography variant="small" className="font-medium">
+                        My Profile
+                      </Typography>
+                    </Link>
                   </MenuItem>
                   <MenuItem className="flex items-center gap-2">
                     <PiPackageBold className='w-5 h-5' />
