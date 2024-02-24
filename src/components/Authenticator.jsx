@@ -25,7 +25,6 @@ import { PiEyeSlashThin, PiEyeThin } from "react-icons/pi";
 import { BsShieldFillExclamation } from "react-icons/bs";
 import axios from "axios"
 import { ToastContainer, toast } from 'react-toastify';
-import "react-toastify/dist/ReactToastify.css";
 
 export function Authenticator() {
 
@@ -137,7 +136,6 @@ export function Authenticator() {
         })
         .then((res) => {
             const data = res.data;
-            console.log(data);
             if (data.success) {
                 sessionStorage.setItem("accessToken", data.accessToken);
                 localStorage.setItem("refreshToken", data.refreshToken);
@@ -184,6 +182,20 @@ export function Authenticator() {
             }
         });
     }    
+
+    const handleKeyUp = (e, type) => {
+        if(e.key == "Enter"){
+            if(type == "login"){
+                handleSignIn();
+            }
+            else if(type == "register"){
+                handleSignUp();
+            }
+            else{
+                handleForgetPassword();
+            }
+        }
+    }
 
     const handleForgetPassword = () => {
 
@@ -273,7 +285,7 @@ export function Authenticator() {
                         </Typography>}
                         <Input label="Password" size="lg" name="password" type={details.passwordOpen ? "text": "password"} 
                         icon={details.passwordOpen ? <PiEyeThin className="w-6 h-6 cursor-pointer" onClick={() => handlePasswordOpen("p")} /> : <PiEyeSlashThin className="w-6 h-6 cursor-pointer" onClick={() => handlePasswordOpen("p")} />} 
-                        value={details.password} onChange={handleChange} />
+                        value={details.password} onChange={handleChange} onKeyUp={(e) => handleKeyUp(e,"login")} />
                         {errors.password!="" && <Typography
                             variant="small"
                             className="-mt-[10px] ml-1 flex items-center gap-1 font-normal text-red-400"
@@ -335,7 +347,7 @@ export function Authenticator() {
                         </Typography>}
                     </CardBody>
                     <CardFooter className="py-0 flex flex-col gap-3">
-                        <Button variant="gradient" color="blue" disabled={details.errors} onClick={handleForgetPassword} fullWidth className="font-secondary flex justify-center items-center">
+                        <Button variant="gradient" onKeyUp={(e) => handleKeyUp(e,"fp")} color="blue" disabled={details.errors} onClick={handleForgetPassword} fullWidth className="font-secondary flex justify-center items-center">
                             Send Reset Link
                             <IoIosArrowRoundForward className="w-6 h-6 ml-1"/>
                         </Button>
@@ -385,7 +397,7 @@ export function Authenticator() {
                         >
                             <BsShieldFillExclamation className="w-3 h-3" />{errors.password}    
                         </Typography>}
-                        <Input label="Confirm Password" size="lg" icon={details.confirmPasswordOpen ? <PiEyeThin className="w-6 h-6 cursor-pointer" onClick={() => handlePasswordOpen("c")} /> : <PiEyeSlashThin className="w-6 h-6 cursor-pointer" onClick={() => handlePasswordOpen("c")} />} name="confirmPassword"  type={details.confirmPasswordOpen ? "text": "password"} value={details.confirmPassword} onChange={handleChange} />
+                        <Input label="Confirm Password" onKeyUp={(e) => handleKeyUp(e,"register")} size="lg" icon={details.confirmPasswordOpen ? <PiEyeThin className="w-6 h-6 cursor-pointer" onClick={() => handlePasswordOpen("c")} /> : <PiEyeSlashThin className="w-6 h-6 cursor-pointer" onClick={() => handlePasswordOpen("c")} />} name="confirmPassword"  type={details.confirmPasswordOpen ? "text": "password"} value={details.confirmPassword} onChange={handleChange} />
                         {errors.confirmPassword!="" && <Typography
                             variant="small"
                             className="-mt-[10px] ml-1 flex items-center gap-1 font-normal text-red-400"

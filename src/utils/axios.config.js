@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const instance = axios.create({
   baseURL: import.meta.env.VITE_URL, 
@@ -10,7 +11,7 @@ const instance = axios.create({
 instance.interceptors.request.use(
     config => {
         const token = sessionStorage.getItem('accessToken');
-        if (token) {
+        if (token!=null&&token!=''&&token!=undefined) {
             config.headers['Authorization'] = 'Bearer ' + token;
         }
         return config;
@@ -24,21 +25,46 @@ instance.interceptors.response.use(
     (response) => {
       return response;
     },
-    async function (error) {
+    function (error) {
       const originalRequest = error.config;
       if ((error.response.status === 401 || error.response.status === 403) && !originalRequest._retry) {
         originalRequest._retry = true;
         const refreshToken = localStorage.getItem('refreshToken');
-        try {
-          const res = await axios.post(`${import.meta.env.VITE_URL}/auth/getAccessToken`, { refreshToken });
-          if (res.status === 200) {
-            sessionStorage.setItem('accessToken', res.data.accessToken);
-            return instance(originalRequest);
+          if(refreshToken!=null){
+            axios.post(`${import.meta.env.VITE_URL}/auth/getAccessToken`, { refreshToken })
+            .then(res => {
+              if(res.status === 403 || res.status === 401){
+                Swal.fire({
+                  title: 'Session expired',
+                  text: 'Please login again',
+                  icon: 'warning',
+                  confirmButtonText: 'OK'
+                }).then(() => {
+                  sessionStorage.removeItem('accessToken');
+                  localStorage.removeItem('refreshToken');
+                  
+                })
+              }
+              if (res.status === 200) {
+                console.log("Access token refreshed");
+                sessionStorage.setItem('accessToken', res.data.accessToken);
+                return instance(originalRequest);
+              }
+            })
+            .catch(refreshError => {
+              console.error('Error refreshing token:', refreshError);
+              console.log("Session expired");
+              Swal.fire({
+                title: 'Session expired',
+                text: 'Please login again',
+                icon: 'warning',
+                confirmButtonText: 'OK'
+              }).then(() => {
+                sessionStorage.removeItem('accessToken');
+                localStorage.removeItem('refreshToken');
+              })
+            })
           }
-        } catch (refreshError) {
-          // Handle refresh token error, if needed
-          console.error('Error refreshing token:', refreshError);
-        }
       }
       return Promise.reject(error);
     }

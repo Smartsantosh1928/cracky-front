@@ -22,6 +22,7 @@ import Cookies from 'universal-cookie';
 import { SetUser, RemoveUser } from "../store/UserSlice";
 import axios from "../utils/axios.config"
 import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 
 export function Navbar() {
 
@@ -45,6 +46,7 @@ export function Navbar() {
   }
 
   useEffect(() => {
+    // console.log(cookies.get('accessToken'), cookies.get('refreshToken'));
     if(user==null){
       const accessToken = cookies.get('accessToken');
       const refreshToken = cookies.get('refreshToken');
@@ -80,6 +82,7 @@ export function Navbar() {
       localStorage.removeItem("refreshToken");
       cookies.remove('accessToken');
       cookies.remove('refreshToken');
+      toast.success("Logged out successfully!");
     }).catch((err) => {
       console.log(err);
     })
@@ -100,6 +103,16 @@ export function Navbar() {
   return (
     <>
       <nav className="w-full h-full md:h-[70px] flex justify-start items-center lg:p-8 lg:py-11">
+        <ToastContainer
+          position="bottom-center"
+          autoClose={3000}
+          hideProgressBar={true}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          draggable
+          theme="light"
+        />
         <Avatar
           alt="Cracky"
           className="cursor-pointer md:w-44 md:h-44 w-28 h-20 ml-3"
@@ -140,7 +153,7 @@ export function Navbar() {
               : <Button variant="outlined" color='blue-gray' className='rounded-full flex justify-center items-center gap-3 py-2 font-secondary font-bold '>cart
                 <BsCartCheck className='w-6 h-6' />
               </Button>}
-              {isMobile ? <Tooltip
+              {isMobile ? <Link to={'/seller'}><Tooltip
                 content="Become a Seller"
                 animate={{
                   mount: { scale: 1, y: 0 },
@@ -150,24 +163,26 @@ export function Navbar() {
                 <Typography variant='paragraph' className="cursor-pointer">
                   <FcShop className='w-6 h-6' />
                 </Typography>
-              </Tooltip> : <Link to={'/seller'}><Button variant="text" color='blue-gray' className='rounded-full justify-center flex items-center gap-3 font-secondary font-bold '>Become a Seller
+              </Tooltip></Link> : <Link to={'/seller'}><Button variant="text" color='blue-gray' className='rounded-full justify-center flex items-center gap-3 font-secondary font-bold '>Become a Seller
                 <FcShop className='w-6 h-6' />
               </Button></Link>}
               <Menu>
                 <MenuHandler>
-                  {user==null ? <IconButton variant="outlined" color='blue-gray' className='rounded-full mr-4 md:mr-0' ><FcBusinessman className='w-8 h-8 cursor-pointer' /></IconButton> : 
+                  {user==null ? <img src="/img/user.jpg" alt="User Profile" className='w-12 h-12 rounded-full cursor-pointer' /> : 
                   <Avatar
                     alt="User Profile"
                     className="cursor-pointer"
-                    src={user ? `${user.profilePictureUrl}` : "https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"}
+                    src={user ? `${user.profilePictureUrl}` : "/img/user.jpg"}
                   />}
                 </MenuHandler>
                 <MenuList>
                   <MenuItem className="flex items-center gap-2">
-                    <CgProfile className='w-5 h-5' />          
-                    <Typography variant="small" className="font-medium">
-                      My Profile
-                    </Typography>
+                    <Link to={"profile"} className="flex items-center gap-2">
+                      <CgProfile className='w-5 h-5' />          
+                      <Typography variant="small" className="font-medium">
+                        My Profile
+                      </Typography>
+                    </Link>
                   </MenuItem>
                   <MenuItem className="flex items-center gap-2">
                     <PiPackageBold className='w-5 h-5' />

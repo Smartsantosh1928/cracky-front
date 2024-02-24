@@ -8,6 +8,8 @@ import { Dashboard } from "./layout/user/Dashboard"
 import ListProducts from "./documentation/seller/sellonline/HelpSupport";
 import { SDashboard } from "./layout/seller/Dashboard"
 import { SellerRegister } from "./pages/seller";
+import "react-toastify/dist/ReactToastify.css";
+
 function App() {
 
   const dispatch = useDispatch();
@@ -53,7 +55,6 @@ function App() {
         <Route path="/shop/:shop_id/*" element={<Dashboard />} />
         <Route path="/" element={<Navigate to="/user" replace />} />
       </Routes>
-   
     </>
   )
 }
