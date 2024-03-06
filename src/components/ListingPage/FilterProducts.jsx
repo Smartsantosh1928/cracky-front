@@ -7,10 +7,7 @@ import { Typography,Accordion,
   Checkbox,
   Input,
   Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Button,} from "@material-tailwind/react";
+} from "@material-tailwind/react";
 import { FcSearch } from 'react-icons/fc';
 import ListPageCards from './ListPageCards';
   const marks = [
@@ -63,6 +60,8 @@ export function FilterProducts(){
   const handleOpen = (value) => setOpen(open === value ? 0 : value);
   const placeholders = ['Crackers', 'Sparklers', 'Fountains', 'Rockets', 'Fireworks'];
   const [currentPlaceholderIndex, setCurrentPlaceholderIndex] = useState(0);  
+  const [openAcc3, setOpenAcc3] = React.useState(true);
+  const handleOpenAcc3 = () => setOpenAcc3((cur) => !cur);
   const intervalId = setInterval(() => {
     setCurrentPlaceholderIndex((prevIndex) => (prevIndex + 1) % placeholders.length);
   }, 6000);
@@ -98,8 +97,8 @@ export function FilterProducts(){
             />
         </AccordionBody>
       </Accordion>
-      <Accordion open={open === 3} icon={<Icon id={3} open={open} />}>
-      <AccordionHeader onClick={() => handleOpen(3)} className="font-secondary font-semibold">Price Range</AccordionHeader>
+      <Accordion open={openAcc3} icon={<Icon id={3} open={open}  />}>
+      <AccordionHeader onClick={() => handleOpen(3)}className="font-secondary font-semibold">Price Range</AccordionHeader>
          <AccordionBody>
          <Box className='ml-4 w-5/6'>
           <Slider
