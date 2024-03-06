@@ -116,9 +116,7 @@ export function FilterProducts(){
       </Card>
     </div>
     <div className="w-[75%]">
-        <div className='ml-10 mt-20 w-[60rem] flex'>
-          <Input label={"Search "+placeholders[currentPlaceholderIndex]+"..."} className='bg-white' color='blue-gray' size='lg' icon={<FcSearch className='w-6 h-6' />} />
-        </div>
+        
         <div className='bg-red-gray-500 grid grid-cols-3 grid-rows-1  gap-10 p-5 '>
             <ListPageCards />
             <ListPageCards />

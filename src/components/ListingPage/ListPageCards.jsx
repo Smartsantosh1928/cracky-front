@@ -29,7 +29,7 @@ export function ListPageCards(){
                   <img
                     src="/img/crack1.png"
                     alt="card-image"
-                    className="h-80 w-80 mt-5 justify-center object-cover"
+                    className="h-80 w-80  justify-center object-cover"
                   />
                 </CardHeader>
                 <CardBody>

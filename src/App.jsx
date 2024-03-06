@@ -49,14 +49,14 @@ function App() {
 
   return (
     <>
-      <Routes>
+      {/* <Routes>
         <Route path="/user/*" element={<Dashboard />} />
         <Route path="/seller/register" element={<SellerRegister />} />
         <Route path="/seller/*" element={<SDashboard />} />
         <Route path="/shop/:shop_id/*" element={<Dashboard />} />
         <Route path="/" element={<Navigate to="/user" replace />} />
-      </Routes>
-      {/* <ListingPage /> */}
+      </Routes> */}
+      <ListingPage />
     </>
   )
 }
