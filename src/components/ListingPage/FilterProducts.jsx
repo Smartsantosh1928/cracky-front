@@ -67,37 +67,24 @@ export function FilterProducts(){
   }, 6000);
  return(
   <div className="flex h-full w-full bg-gray-200">
-    <div className="flex w-[25%] px-10 pt-10">
-      <Card className="mt-5  h-screen w-80 ml-4 bg-white rounded-2xl">
+    <div className="flex w-[25%] px-10 pt-5">
+      <Card className=" h-96 w-80  bg-white rounded-2xl">
         <Typography className="text-lg font-secondary text-brown-900 font-bold p-2 flex justify-center items-center">Product List</Typography>
-        <div className="w-full p-6">
+        <div className="w-full p-3">
         <Accordion open={open === 1} icon={<Icon id={1} open={open} />}>
-        <AccordionHeader onClick={() => handleOpen(1)} className="font-secondary font-semibold">Morning Crackers</AccordionHeader>
+        <AccordionHeader onClick={() => handleOpen(1)} className="font-secondary font-semibold">Types Of Crackers</AccordionHeader>
         <AccordionBody className='flex flex-col '>
             <Checkbox
                 label={
-                <Typography color="blue-gray" className=" font-secondary text-lg">Bijili</Typography> }
+                <Typography color="blue-gray" className=" font-secondary text-lg">Morning Crackers</Typography> }
             />
             <Checkbox
                 label={
-                <Typography color="blue-gray" className="font-secondary text-lg">Bijili</Typography> }
+                <Typography color="blue-gray" className="font-secondary text-lg">Night Crackers</Typography> }
             />
         </AccordionBody>
       </Accordion>
-      <Accordion open={open === 2} icon={<Icon id={2} open={open} />}>
-      <AccordionHeader onClick={() => handleOpen(2)} className="font-secondary font-semibold">Night Crackers</AccordionHeader>
-        <AccordionBody className='flex flex-col '>
-            <Checkbox
-                label={
-                <Typography color="blue-gray" className=" font-secondary text-lg">Bijili</Typography> }
-            />
-            <Checkbox
-                label={
-                <Typography color="blue-gray" className="font-secondary text-lg">Bijili</Typography> }
-            />
-        </AccordionBody>
-      </Accordion>
-      <Accordion open={openAcc3} icon={<Icon id={3} open={open}  />}>
+      <Accordion open={openAcc3}>
       <AccordionHeader onClick={() => handleOpen(3)}className="font-secondary font-semibold">Price Range</AccordionHeader>
          <AccordionBody>
          <Box className='ml-4 w-5/6'>
