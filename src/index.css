@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+     font-family: poppins;
+}
+
+.shake-login{
+     animation-name: shake;
+     animation-duration: 4s;
+     animation-iteration-count: infinite;
+     animation-timing-function: ease-in;
+}
+
+@keyframes shake {
+     0% {transform: translateX(0)}
+     1% {transform: translateX(-3px)}
+     2% {transform: translateX(8px)}
+     3% {transform: translateX(-10px)}
+     4% {transform: translateX(10px)}
+     5% {transform: translateX(-8px)}
+     6% {transform: translateX(3px)}
+     7% {transform: translateX(0)}
+}
+
+/* src/index.css */
+   @keyframes slideLeft {
+     
+     100% {
+       transform: translateX(-100%);
+     }
+   }
+   
+   @keyframes slideRight {  
+     100% {
+       transform: translateX(100%);
+     }
+   }
+   
+   .animate-left {
+     animation: slideLeft  linear;
+   }
+   
+   .animate-right {
+     animation: slideRight  linear;
+   }
+
+.active{
+  position: relative;
+  background: #F5FBFF;
+  border: 1px solid rgb(11, 11, 47);
+  border-radius: 10px;
+  transform: scale(1.06);
+  font-weight: bolder;
+  color:rgb(11, 11, 47);
+  font-size: 18px;
+}
+
+.active::before{
+  content: ">>";
+  position: absolute;
+  display: flex;
+  font-weight: bolder;
+  top:8px;
+  left:13px;
+}
+
+.gradient-card{
+  background: linear-gradient(90deg, rgba(11, 11, 47, 1) 0%, rgba(0, 212, 255, 1) 100%);
+  border-radius: 10px;
+  padding: 3px 20px;
+  color: white;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
