@@ -32,7 +32,7 @@ export function Step2({handleNext, handlePrev}) {
             <span className="relative w-full"><Input size="lg"  variant="outlined" label="Enter Display Name*" /><BsExclamationCircle  color="gray" className="absolute top-3 w-5 h-5 md:-right-7 "/>  </span>
         </div>
         <div className="py-5">
-            <Button onClick={()=>handleNext(2)} className="bg-[#192A51] capitalize flex  justify-center items-center gap-3" size="sm"><span className="">Continue</span> <FaArrowRight/> </Button>
+            <Button onClick={()=>handleNext(2)} className="bg-[#192A51] font-secondary font-thin capitalize flex  justify-center items-center gap-3" size="sm"><span className="">Continue</span> <FaArrowRight/> </Button>
         </div>
        </section>
     )

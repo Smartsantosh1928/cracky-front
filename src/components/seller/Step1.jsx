@@ -61,7 +61,7 @@ export function Step1({handleNext, handlePrev}) {
             <Typography className="font-secondary text-gray-600 text-sm">By continuing, I agree to Flipkart’s <span className="text-blue-500">Terms of Use</span> & <span className="text-blue-500">Privacy Policy</span> </Typography>
         </div>
         <div className="py-5">
-            <Button onClick={()=>handleNext(1)} className="bg-[#192A51] capitalize flex  justify-center items-center gap-3" size="sm"><span className="">Register & Continue</span> <FaArrowRight/> </Button>
+            <Button onClick={()=>handleNext(1)} className="bg-[#192A51] capitalize font-secondary font-thin flex  justify-center items-center gap-3" size="sm"><span className="">Register & Continue</span> <FaArrowRight/> </Button>
         </div>
        </section>
     )

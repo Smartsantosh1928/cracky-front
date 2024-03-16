@@ -4,43 +4,40 @@ import { FaInstagram, FaFacebook } from 'react-icons/fa';
 import { FaXTwitter } from "react-icons/fa6";
 
 export function Footer(){
+
+    const currentYear = new Date().getFullYear();
+
+    const links = "mb-5 flex text-center items-center ml-5 text-xs";
+    const usefulLinks = ["About Us","Home","Customer Care","Privacy Policy"]
+
+    const mapLinks=(arr)=>
+         arr.map((link,key) => <li key={key} className={links}><FaChevronRight />{link}</li>)
+
     return(
         <footer className="w-full">
             <div className="w-full text-gray-200 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-1  bg-gray-900">
                 <div className="w-full">
                     <h4 className="text-gray-500 p-6 cursor-pointer">Useful Links</h4>
                         <ul className="text-white">
-                            <li className="mb-5 flex text-center items-center ml-5 text-xs hover:text-yellow-800"><FaChevronRight />About Us</li>
-                            <li className="mb-5 flex text-center items-center ml-5 text-xs hover:text-yellow-800"><FaChevronRight />Home</li>
-                            <li className="mb-5 flex text-center items-center ml-5 text-xs hover:text-yellow-800"><FaChevronRight />Customer Care</li>
-                            <li className="mb-5 flex text-center items-center ml-5 text-xs hover:text-yellow-800"><FaChevronRight />Privacy Policy</li>
+                           {mapLinks(usefulLinks)}
                         </ul>
                 </div>
                 <div className="w-full">
                     <h4 className="text-gray-500 p-6 cursor-pointer">Useful Links</h4>
                         <ul className=" text-white">
-                            <li className="mb-5 flex text-center items-center ml-5 text-xs hover:text-yellow-800"><FaChevronRight />About Us</li>
-                            <li className="mb-5 flex text-center items-center ml-5 text-xs hover:text-yellow-800"><FaChevronRight />Home</li>
-                            <li className="mb-5 flex text-center items-center ml-5 text-xs hover:text-yellow-800"><FaChevronRight />Customer Care</li>
-                            <li className="mb-5 flex text-center items-center ml-5 text-xs hover:text-yellow-800"><FaChevronRight />Privacy Policy</li>
+                            {mapLinks(usefulLinks)} 
                         </ul>
                 </div>
                 <div className="w-full">
                     <h4 className="p-6 text-gray-500">Useful Links</h4>
                         <ul className="text-white cursor-pointer">
-                            <li className="mb-5 flex text-center items-center ml-5 text-xs hover:text-yellow-800"><FaChevronRight />About Us</li>
-                            <li className="mb-5 flex text-center items-center ml-5 text-xs hover:text-yellow-800"><FaChevronRight />Home</li>
-                            <li className="mb-5 flex text-center items-center ml-5 text-xs hover:text-yellow-800"><FaChevronRight />Customer Care</li>
-                            <li className="mb-5 flex text-center items-center ml-5 text-xs hover:text-yellow-800"><FaChevronRight />Privacy Policy</li>
+                            {mapLinks(usefulLinks)}
                         </ul>
                 </div>
                 <div className="w-full">
                     <h4 className="p-6 text-gray-500">Useful Links</h4>
                         <ul className="text-white cursor-pointer">
-                            <li className="mb-5 flex text-center items-center ml-5 text-xs hover:text-yellow-800"><FaChevronRight />About Us</li>
-                            <li className="mb-5 flex text-center items-center ml-5 text-xs hover:text-yellow-800"><FaChevronRight />Home</li>
-                            <li className="mb-5 flex text-center items-center ml-5 text-xs hover:text-yellow-800"><FaChevronRight />Customer Care</li>
-                            <li className="mb-5 flex text-center items-center ml-5 text-xs hover:text-yellow-800"><FaChevronRight />Privacy Policy</li>
+                            {mapLinks(usefulLinks)}
                         </ul>
                 </div>
                 <div className="w-full">
@@ -48,7 +45,7 @@ export function Footer(){
                     <p className="text-xs text-gray-500 cursor-default">Ayya Nadar Janaki Ammal College,Sivakasi-626123</p>
                 </div>
                 <div className="w-full">
-                    <img src="public/img/cart.png" className=" flex mt-14  h-36 w-30" />
+                    <img src="/img/cart.png" className="ml-10 flex mt-14  h-36 w-30" />
                 </div>
             </div>
             <div className=" w-full border-l">
@@ -62,7 +59,7 @@ export function Footer(){
                             </div>
                        
                             <div className="h-10 w-1/4 bg-gray-900">
-                                <p className="text-sm flex text-center justify-center text-gray-300 mt-2 cursor-default">&copy; 2023 Cracky</p>
+                                <p className="text-sm flex text-center justify-center text-gray-300 mt-2 cursor-default">&copy; {currentYear} Cracky</p>
                             </div>
                             
                     
