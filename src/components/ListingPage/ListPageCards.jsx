@@ -61,14 +61,14 @@ export function ListPageCards(){
                     fullWidth={true}
                     className="bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
                   >
-                   <Typography className='flex text-lg px-5 font-secondary font-bold text-deep-purple-900'><AiFillThunderbolt className='flex ml-16 mt-1.5 text-red-800'/>BUY NOW</Typography>
+                   <Typography className='flex text-lg px-5 font-secondary font-bold text-deep-purple-900'><AiFillThunderbolt className='flex ml-16 mt-1.5 text-orange-500'/>BUY NOW</Typography>
                   </Button>
                   <Button
                     ripple={false}
                     fullWidth={true}
                     className="mt-5 bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
                   >
-                    <Typography className='flex text-lg px-5 font-secondary font-bold text-deep-purple-900 pt-2'><FaShoppingCart className='flex ml-16 mt-1 text-red-800'/>BUY NOW</Typography>
+                     <Typography className='flex text-lg px-5 font-secondary font-bold text-deep-purple-900 gap-2'><FaShoppingCart className='flex ml-9 mt-1 text-orange-500'/>ADD TO CART</Typography>
                   </Button>
                 </CardFooter>
             </Card>
