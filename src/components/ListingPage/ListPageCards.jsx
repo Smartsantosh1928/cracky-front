@@ -1,4 +1,5 @@
 import React,{useState} from 'react';
+import { FaIndianRupeeSign } from "react-icons/fa6";
 import { AiFillThunderbolt } from "react-icons/ai";
 import { FaShoppingCart } from "react-icons/fa";
 import { Typography,
@@ -23,22 +24,23 @@ export function ListPageCards(){
 
     return(
        <div>
-        <div className='flex '>
-            <Card className="w-96">
-                <CardHeader shadow={false} floated={false} className="h-96">
+          <div className=''>
+              <Card className=''>
+              <CardHeader shadow={false} floated={false} className="">
                   <img
                     src="/img/crack1.png"
                     alt="card-image"
-                    className="h-80 w-80 mt-5 justify-center object-cover"
+                    className="h-32 w-80  justify-center"
                   />
                 </CardHeader>
-                <CardBody>
-                  <div className="mb-2 flex items-center justify-between ">
+                <CardBody className=''>
+                  <div className="flex items-center justify-between ">
                     <Typography color="blue-gray" className="font-secondary text-lg font-bold">
                       Bijili Crackers
                     </Typography>
-                    <Typography color="blue-gray" className="font-secondary text-lg font-bold">
-                    ₹200.00
+                    <Typography color="blue-gray" className="flex font-secondary text-lg font-bold">
+                    <FaIndianRupeeSign className='flex mt-1.5 h-5 w-5'/>
+                      <Typography className='flex text-2xl font-secondary font-bold'>200</Typography>
                     </Typography>
                   </div>
                   <Typography
@@ -66,13 +68,13 @@ export function ListPageCards(){
                   <Button
                     ripple={false}
                     fullWidth={true}
-                    className="mt-5 bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
+                    className="mt-5  bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
                   >
                      <Typography className='flex text-lg px-5 font-secondary font-bold text-deep-purple-900 gap-2'><FaShoppingCart className='flex ml-9 mt-1 text-orange-500'/>ADD TO CART</Typography>
                   </Button>
                 </CardFooter>
-            </Card>
-        </div>
+              </Card>
+          </div>
        </div>
     );
 }
