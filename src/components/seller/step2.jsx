@@ -22,7 +22,7 @@ export function Step2({handleNext, handlePrev}) {
        return (
        <section className="md:mt-9">
         <div className="">
-            <Typography className="font-secondary text-gray-700 text-sm pr-10 font-semibold">Almost there ...</Typography>
+            <Typography className="font-secondary text-gray-700 text-sm pr-10 font-semibold">Almost there ...npm run </Typography>
         </div>
         <div className="flex flex-col gap-5 justify-center items-center py-6 ">
             <Input size="lg"  variant="outlined" label="Create Password* " icon={<VscEyeClosed  className="w-6 h-6"/>} />
