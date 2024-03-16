@@ -14,7 +14,6 @@ export function ListForm(){
       </Typography>
 
       <form className="mt-8  w-80 max-w-screen-lg sm:w-96">
-        <div></div>
        <div className="mt-10 flex flex-row gap-2">
        <Typography className="font-secondary text-xl text-black font-bold">CrackerName</Typography>
         <Input label="Cracker Name"></Input>
