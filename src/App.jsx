@@ -7,7 +7,7 @@ import { useGoogleOneTapLogin } from 'react-google-one-tap-login';
 import { Dashboard } from "./layout/user/Dashboard"
 import { SDashboard } from "./layout/seller/Dashboard"
 import { SellerRegister } from "./pages/seller";
-import ListForm from "./components/ListingPage/ListForm";
+import CardForm from "./components/ListingPage/CardForm";
 
 import "react-toastify/dist/ReactToastify.css";
 import ListingPage from "./components/ListingPage/ListingPage";
@@ -55,7 +55,7 @@ function App() {
         <Route path="/seller/register" element={<SellerRegister />} />
         <Route path="/seller/*" element={<SDashboard />} />
         <Route path="/ListingPage/*" element={<ListingPage/>} />
-        <Route path="/ListingPage/ListForm" element={<ListForm/>} />
+        <Route path="/ListingPage/CardForm" element={<CardForm/>} />
         <Route path="/shop/:shop_id/*" element={<Dashboard />} />
         <Route path="/" element={<Navigate to="/user" replace />} />
       </Routes>
