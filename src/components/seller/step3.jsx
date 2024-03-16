@@ -9,7 +9,7 @@ import {Button,Menu,
 import OtpInput from 'react-otp-input';
 import { FaArrowRight } from "react-icons/fa6";
 
-export function Step1({handleNext, handlePrev}) {
+export function Step3({handleNext, handlePrev}) {
   const [MobOtp, setMobOtp] = useState('');
   const [mailOtp, setMailOtp] = useState('');
       React.useEffect(()=>{
@@ -54,17 +54,17 @@ export function Step1({handleNext, handlePrev}) {
               />
               <Typography className="font-secondary text-xs text-gray-600">Didn’t receive OTP? <span className="text-blue-500 cursor-pointer"> Resend OTP</span></Typography>
             </div>
-            <Input size="lg" variant="outlined" label="Enter GSTIN*"/>
+            <Input size="lg" variant="outlined" label="EnterGSTIN*"/>
         </div>
         <div className="">
             <Typography className="font-secondary text-gray-700 text-sm pr-10 font-semibold">GSTIN is required to sell products on Cracky.You can also share it in the final step.</Typography>
-            <Typography className="font-secondary text-gray-600 text-sm">By continuing, I agree to Flipkart’s <span className="text-blue-500">Terms of Use</span> & <span className="text-blue-500">Privacy Policy</span> </Typography>
+            <Typography className="font-secondary text-gray-600 text-sm">By continuing, I agree to Flipkart’s Terms of Use & Privacy Policy</Typography>
         </div>
         <div className="py-5">
-            <Button onClick={()=>handleNext(1)} className="bg-[#192A51] capitalize flex  justify-center items-center gap-3" size="sm"><span className="">Register & Continue</span> <FaArrowRight/> </Button>
+            <Button onClick={handleNext} className="bg-[#192A51] capitalize flex  justify-center items-center gap-3" size="sm"><span className="">Register & Continue</span> <FaArrowRight/> </Button>
         </div>
        </section>
     )
   }
   
-  export default Step1
+  export default Step3
