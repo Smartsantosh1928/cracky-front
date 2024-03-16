@@ -8,6 +8,7 @@ import {
     CardFooter,
     Typography,
     Tooltip,
+    Button,
 } from "@material-tailwind/react";
    
 export function ShopCard() {
@@ -39,6 +40,9 @@ export function ShopCard() {
                 <div className=' flex flex-col items-center justify-center bg-white overflow-hidden'>
                     <img src={img} className='h-[80%] w-[80%] ' alt="" />
                     <Typography className='text-xs font-secondary text-black'>name</Typography>
+                </div>
+                <div className='ml-16 h-full w-full'>
+                   <Button className='font-secondary  text-sm h-15 w-44 rounded-3xl bg-blue-900'>Purchase</Button>
                 </div>
             </div>
       </CardBody>
