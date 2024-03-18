@@ -10,22 +10,22 @@ import {
 export function CardForm({ onCardSubmit }) {
   const [crackerName, setCrackerName] = useState("");
   const [crackerPrice, setCrackerPrice] = useState("");
-  const [crackerDesc, setCrackerDesc] = useState("");
-  const [crackerQuantity, setCrackerQuantity] = useState("");
+  const [crackerSellingPrice, setCrackerSp] = useState("");
+  const [crackerDiscount, setCrackerDiscount] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const cardData = {
       crackerName,
       crackerPrice,
-      crackerDesc,
-      crackerQuantity
+      crackerSellingPrice,
+      crackerDiscount
     };
     onCardSubmit(cardData);
     setCrackerName("");
     setCrackerPrice("");
-    setCrackerDesc("");
-    setCrackerQuantity("");
+    setCrackerSp("");
+    setCrackerDiscount("");
   };
 
   return (
@@ -37,7 +37,7 @@ export function CardForm({ onCardSubmit }) {
           </Typography>
 
           <form
-            className="mt-8 w-80 max-w-screen-lg sm:w-96"
+            className="mt-8 max-w-screen-lg sm:w-96" 
             onSubmit={handleSubmit}
           >
             <div className="mt-10 flex flex-row gap-2">
@@ -52,35 +52,32 @@ export function CardForm({ onCardSubmit }) {
             </div>
             <div className="flex flex-row gap-5 mt-10">
               <Typography className="font-secondary text-xl text-black font-bold">
-                Cracker Price
+                Actual Price
               </Typography>
               <Input
-                label="Cracker Price"
+                label="Actual Price"
                 value={crackerPrice}
                 onChange={(e) => setCrackerPrice(e.target.value)}
               />
             </div>
             <div className="flex flex-row gap-5 mt-10">
               <Typography className="font-secondary text-xl text-black font-bold">
-                Cracker Description
+                Selling Price
               </Typography>
               <Input
-                label="Cracker Description"
-                value={crackerDesc}
-                onChange={(e) => setCrackerDesc(e.target.value)}
+                label="Selling Price"
+                value={crackerSellingPrice}
+                onChange={(e) => setCrackerSp(e.target.value)}
               />
             </div>
             <div className="flex flex-row gap-5 mt-10">
               <Typography className="font-secondary text-xl text-black font-bold">
-                Cracker Quantity
+                Discount
               </Typography>
               <Input
-                label="Quantity"
-                type="number"
-                min={1}
-                max={1000}
-                value={crackerQuantity}
-                onChange={(e) => setCrackerQuantity(e.target.value)}
+                label="Discount"
+                value={crackerDiscount}
+                onChange={(e) => setCrackerDiscount(e.target.value)}
               />
             </div>
             <div>

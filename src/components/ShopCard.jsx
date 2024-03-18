@@ -12,6 +12,7 @@ import {
 } from "@material-tailwind/react";
    
 export function ShopCard() {
+   
     return (
     <Card className="py-0">
       <CardHeader floated={false} className='overflow-hidden flex justify-start items-center relative h-[20%] p-4 '  >
@@ -42,7 +43,7 @@ export function ShopCard() {
                     <Typography className='text-xs font-secondary text-black'>name</Typography>
                 </div>
                 <div className='ml-16 h-full w-full'>
-                   <Button className='font-secondary  text-sm h-15 w-44 rounded-3xl bg-blue-900'>Purchase</Button>
+                <Button className='font-secondary  text-sm h-15 w-44 rounded-3xl bg-blue-900' >Purchase</Button>
                 </div>
             </div>
       </CardBody>
