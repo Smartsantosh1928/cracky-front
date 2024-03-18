@@ -80,6 +80,7 @@ export function CardForm({ onCardSubmit }) {
                 onChange={(e) => setCrackerDiscount(e.target.value)}
               />
             </div>
+
             <div>
               <Button className="ml-40 mt-24" type="submit">
                 Submit
