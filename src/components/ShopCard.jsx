@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom';
 import logo from '/img/arul.png' 
 import img from '/img/crack1.png' 
 import {
@@ -10,6 +11,7 @@ import {
     Tooltip,
     Button,
 } from "@material-tailwind/react";
+import ListingPage from './ListingPage/ListingPage';
    
 export function ShopCard() {
    
@@ -43,7 +45,8 @@ export function ShopCard() {
                     <Typography className='text-xs font-secondary text-black'>name</Typography>
                 </div>
                 <div className='ml-16 h-full w-full'>
-                <Button className='font-secondary  text-sm h-15 w-44 rounded-3xl bg-blue-900' >Purchase</Button>
+                <Link to="/ListingPage"><Button className='font-secondary  text-sm h-15 w-44 rounded-3xl bg-blue-900'>Purchase</Button>
+                </Link>
                 </div>
             </div>
       </CardBody>

@@ -53,6 +53,7 @@ function App() {
         <Route path="/user/*" element={<Dashboard />} />
         <Route path="/seller/register" element={<SellerRegister />} />
         <Route path="/seller/*" element={<SDashboard />} />
+        <Route path="/ListingPage" element={<ListingPage/>} />
         <Route path="/ListingPage/*" element={<ListingPage/>} />
         <Route path="/ListingPage/CardForm" element={<CardForm/>} />
         <Route path="/shop/:shop_id/*" element={<Dashboard />} />
