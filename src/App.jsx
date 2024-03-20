@@ -10,6 +10,7 @@ import { SellerRegister } from "./pages/seller";
 import CardForm from "./components/ListingPage/CardForm";
 import "react-toastify/dist/ReactToastify.css";
 import ListingPage from "./components/ListingPage/ListingPage";
+import AboutUs from "./components/AboutUs";
 
 function App() {
 
@@ -49,7 +50,7 @@ function App() {
 
   return (
     <>
-      <Routes>
+      {/* <Routes>
         <Route path="/user/*" element={<Dashboard />} />
         <Route path="/seller/register" element={<SellerRegister />} />
         <Route path="/seller/*" element={<SDashboard />} />
@@ -58,8 +59,8 @@ function App() {
         <Route path="/ListingPage/CardForm" element={<CardForm/>} />
         <Route path="/shop/:shop_id/*" element={<Dashboard />} />
         <Route path="/" element={<Navigate to="/user" replace />} />
-      </Routes>
-      
+      </Routes> */}
+      {<AboutUs />}
     </>
   )
 }
